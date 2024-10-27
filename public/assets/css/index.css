@@ -1,0 +1,122 @@
+section {
+    padding: 32px;
+}
+
+.s1 {
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../images/home-wallpaper.png");
+
+    h1 {
+        color: #FDC47F;
+    }
+
+    h5 {
+        color: white;
+    }
+
+    .s1-container {
+        width: 60%;
+
+        @media (max-width: 500px) {
+            width: 100%;
+        }
+    }
+
+    .s1-button1 {
+        padding: 12px 24px;
+        columns: black;
+        border: 1px solid white;
+        background-color: #FDC47F;
+    }
+
+    .s1-button2 {
+        padding: 12px 24px;
+        color: #00FF95;
+        border: 1px solid white;
+        background-color: transparent;
+    }
+}
+
+.s2 {
+    .carousel-images {
+        margin-top: 32px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        text-align: center;
+
+        gap: 32px;
+    }
+
+    .s2-container {
+        width: 60%;
+
+        @media (max-width: 500px) {
+            width: 100%;
+        }
+    }
+
+    .carousel-home-item {
+        background-color: #FFEEDC;
+        
+
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.s3 {
+    background-color: #FFEEDC;
+
+    .colections-title {
+        text-align: center;
+        margin-bottom: 64px;
+    }
+
+    img {
+        max-width: 700px;
+        width: 80%;
+    }
+}
+
+.s4 {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .s4-button1 {
+        padding: 12px 24px;
+        background: #FDC47F;
+        color: black;
+        border: 1px solid black;
+        margin-right: 8px;
+    }
+
+    .s4-button2 {
+        padding: 12px 24px;
+        background: transparent;
+        color: black;
+        border: 1px solid black;
+    }
+}
+
+.s5 {
+    .comments-title {
+        text-align: center;
+    }
+
+    .comments-container {
+        margin-top: 64px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+
+        div {
+            padding: 16px;
+            border: 1px solid black;
+        }
+    }
+}
