@@ -16,7 +16,7 @@ section {
     .s1-container {
         width: 60%;
 
-        @media (max-width: 500px) {
+        @media (max-width: 600px) {
             width: 100%;
         }
     }
@@ -51,7 +51,7 @@ section {
     .s2-container {
         width: 60%;
 
-        @media (max-width: 500px) {
+        @media (max-width: 600px) {
             width: 100%;
         }
     }
@@ -80,7 +80,7 @@ section {
     }
 }
 
-.s4 {
+.contact-container {
     display: flex;
     align-items: center;
     flex-wrap: wrap;

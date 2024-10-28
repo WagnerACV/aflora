@@ -1,0 +1,37 @@
+{
+    "users": [
+        {
+            "id": "1",
+            "name": "Admin",
+            "password": "123",
+            "email": "admin@aflora.com",
+            "phone": "31999999999",
+            "invitationCode": "admin",
+            "subscribedNewsletter": false
+        }
+    ], 
+    "products": [
+        {
+            "id": "",
+            "name": "Vaso com Aloe Vera",
+            "price": "55",
+            "description": "admin@aflora.com",
+            "images": [
+                ""
+            ]
+        }
+    ],
+    "posts": [
+        {
+            "id": "",
+            "type": "Decoração",
+            "title": "Como Escolher o Vasco Ideal",
+            "subtitle": "Descubra como selecionar o vaso ideal para sua casa.",
+            "date": "2024-10-23T03:00:00.000Z",
+            "author": "Emily Santos",
+            "text": "É com grande alegria que damos as boas-vindas a você em nosso novo site, dedicado a transformar seus espaços em verdadeiros oásis de beleza e tranquilidade.",
+            "image": "",
+            "showOnHome": true
+        }   
+    ]
+}

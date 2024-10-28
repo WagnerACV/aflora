@@ -118,17 +118,17 @@
                 <img src="assets/images/home-comments.png" alt="Comentários">
             </div>
         </div>
-      </section>
 
-      <section section class="s4">
-        <div>
-            <h3>Fale conosco pelo WhatsApp</h3>
-            <h6>Não perca tempo! Entre em contato hoje mesmo para mais informações ou compras.</h6>
-        </div>
-        <div>
-            <button class="s4-button1">Contato</button>
-            <button class="s4-button2">Saiba Mais</button>
-        </div>
+        <section section class="contact-container">
+            <div>
+                <h3>Fale conosco pelo WhatsApp</h3>
+                <h6>Não perca tempo! Entre em contato hoje mesmo para mais informações ou compras.</h6>
+            </div>
+            <div>
+                <button class="s4-button1">Contato</button>
+                <button class="s4-button2">Saiba Mais</button>
+            </div>
+          </section>
       </section>
 
       <section section class="s5">
@@ -256,11 +256,13 @@
           <div class="modal-body border-0">
             <h5>Insira suas informações de acesso:</h5>
 
-            <p class="m-0">E-mail / Usuário:</p>
-            <input class="w-100" type="text">
+            <form id="sign-in-form" onsubmit="return false;">
+                <label for="login" class="m-0">E-mail / Usuário:</label>
+                <input class="w-100" name="login" type="text">
 
-            <p class="m-0">Senha:</p>
-            <input class="w-100" type="password">
+                <label for="password" class="m-0">Senha:</label>
+                <input class="w-100" name="password" type="password">
+            </form>
           </div>
           <div class="modal-footer border-0">
             <button
@@ -272,7 +274,9 @@
             </button>
             <button
                 style="background-color: #FFEEDC; border: 1px solid black;"
-              class="btn btn-green"
+                class="btn btn-green"
+                id="signInButton"
+                onclick="signIn()"
             >
               Login
             </button>
@@ -329,7 +333,9 @@
             </button>
             <button
                 style="background-color: #FFEEDC; border: 1px solid black;"
-              class="btn btn-green"
+                class="btn btn-green"
+                id="signUpButton"
+                onclick="signUp()"
             >
               Cadastrar
             </button>
@@ -344,5 +350,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="assets/js/index.js"></script>
+    <script src="assets/js/login.js"></script>
   </body>
 </html>
