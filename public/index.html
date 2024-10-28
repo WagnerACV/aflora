@@ -25,39 +25,10 @@
   <body>
     <header>
       <h3><a href="/">Aflorá</a></h3>
-      <div class="header-right-contant">
+      <div id="logged-content" class="header-right-contant">
         <h5><a href="/produtos">Produtos</a></h5>
 
         <h5><a href="/blog">Blog</a></h5>
-
-        <div class="dropdown">
-          <a
-            class="btn btn-secondary btn-sm dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Gerenciar
-          </a>
-
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="/gerenciar-produtos">Produtos</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="/gerenciar-estoque">Estoque</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="/gerenciar-usuarios">Usuários</a>
-            </li>
-            <li><a class="dropdown-item" href="/gerenciar-blog">Blog</a></li>
-          </ul>
-        </div>
-
-        <button class="p-0" data-bs-target="#loginModal" data-bs-toggle="modal">
-          <img src="assets/images/user-icon.svg" alt="ícone de usuário" />
-        </button>
       </div>
     </header>
 
@@ -308,20 +279,22 @@
           <div class="modal-body border-0">
             <h5>Insira suas informações para realizar seu cadastro:</h5>
 
-            <p class="m-0">Nome completo</p>
-            <input class="w-100" type="text">
+            <form id="sign-up-form" onsubmit="return false;">
+              <label for="name" class="m-0">Nome completo *</label>
+              <input class="w-100" name="name" type="text">
 
-            <p class="m-0">E-mail</p>
-            <input class="w-100" type="text">
+              <label for="email" class="m-0">E-mail *</label>
+              <input class="w-100" name="email" type="text">
 
-            <p class="m-0">Telefone</p>
-            <input class="w-100" type="text">
+              <label for="phone" class="m-0">Telefone *</label>
+              <input class="w-100" name="phone" type="text" placeholder="(99) 99999-9999" maxlength="15">
 
-            <p class="m-0">Senha</p>
-            <input class="w-100" type="password">
+              <label for="password" class="m-0">Senha *</label>
+              <input class="w-100" name="password" type="password">
 
-            <p class="m-0">Repetir senha</p>
-            <input class="w-100" type="password">
+              <label for="repeatPassword" class="m-0">Repetir Senha *</label>
+              <input class="w-100" name="repeatPassword" type="password">
+            </form>
           </div>
           <div class="modal-footer border-0">
             <button
@@ -349,7 +322,9 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script src="assets/js/index.js"></script>
-    <script src="assets/js/login.js"></script>
+    <script src="assets/js/common.js"></script>
   </body>
 </html>
