@@ -53,7 +53,7 @@ function loadUserInfo() {
             </div>
         `;
     } else {
-        loggedContent.innerHTML += `<button class="p-0" data-bs-target="#loginModal" data-bs-toggle="modal"> <img src="assets/images/user-icon.svg" alt="ícone de usuário" /> </button>`;
+        loggedContent.innerHTML += `<button class="p-0" data-bs-target="#loginModal" data-bs-toggle="modal"> <i class="fa fa-lg fa-user"></i> </button>`;
     }
 }
 

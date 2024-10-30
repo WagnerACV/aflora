@@ -1,0 +1,16 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #FFEEDC;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#carousel-product-images {
+    img {
+        width: 200px;
+    }
+}

@@ -32,7 +32,7 @@ header {
         }
     }
 
-    .header-right-contant {
+    .header-right-content {
         display: flex;
         align-items: center;
         margin-right: 24px;
