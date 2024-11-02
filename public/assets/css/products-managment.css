@@ -1,0 +1,92 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-color: #ffeedc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.products-managment-container {
+    padding: 32px;
+
+    #products-managment-title {
+        font-size: 40px;
+        font-weight: 700;
+        margin: 48px 0 64px;
+    }
+
+    #products-container {
+        .products-list-header {
+            margin: 0 0 32px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            gap: 32px;
+
+            #products-list-title {
+                font-size: 32px;
+                font-weight: 700;
+                margin: 0;
+            }
+
+            #createButton {
+                font-size: 16px;
+                color: white;
+                background-color: #148d3c;
+                border: 1px solid black;
+                border-radius: 50%;
+                padding: 0 12px;
+            }
+        }
+
+        #products-list {
+            display: flex;
+
+            .product {
+                box-shadow: 5px 5px 8px 1px rgba(0, 0, 0, 0.7);
+                border: 1px solid black;
+
+                text-align: center;
+
+                h5 {
+                    margin-top: 8px;
+                    font-size: 18px;
+                }
+
+                h4 {
+                    font-size: 20px;
+                }
+
+                .buttonsContainer {
+                    margin: 32px 0 8px;
+
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: row;
+                    gap: 16px;
+
+                    .edit-button {
+                        padding: 4px 0;
+                        width: 124px;
+                        background-color: #FFFDBD;
+                        font-size: 16px;
+                        border: 1px solid black;
+                    }
+
+                    .delete-button {
+                        padding: 4px 0;
+                        width: 62px;
+                        background-color: #B42318;
+                        font-size: 16px;
+                        border: 1px solid black;
+                    }
+                }
+            }
+        }
+    }
+}

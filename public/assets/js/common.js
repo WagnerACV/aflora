@@ -24,16 +24,9 @@ function loadUserInfo() {
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li>
-                        <a class="dropdown-item" href="/gerenciar-produtos">Produtos</a>
-                        </li>
-                        <li>
-                        <a class="dropdown-item" href="/gerenciar-estoque">Estoque</a>
-                        </li>
-                        <li>
-                        <a class="dropdown-item" href="/gerenciar-usuarios">Usuários</a>
-                        </li>
-                        <li><a class="dropdown-item" href="/gerenciar-blog">Blog</a></li>
+                        <li> <a class="dropdown-item" href="/pages/products-managment.html">Produtos</a> </li>
+                        <li> <a class="dropdown-item" href="/pages/blog-managment.html">Blog</a></li>
+                        <li> <a class="dropdown-item" href="/pages/users-managment.html">Usuários</a> </li>
                     </ul>
                 </div>
             `;

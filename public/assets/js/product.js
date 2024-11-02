@@ -15,7 +15,7 @@ fetch("/products/" + productId)
             document.getElementById('loadSpinner').style.display = "none";
 
             document.getElementById('product-name').innerHTML = data.name;
-            document.getElementById('product-price').innerHTML = data.price;
+            document.getElementById('product-price').innerHTML = "R$ " + data.price;
             document.getElementById('product-description').innerHTML = data.description;
             
             data.images.forEach((image, index) => {
