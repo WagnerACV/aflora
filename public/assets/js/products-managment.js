@@ -2,9 +2,11 @@ var productImageBase64;
 var personData = localStorage.getItem("user");
 var products;
 
+var productToDeleteID;
+
 if (personData && JSON.parse(personData).userType === "admin") {
     personData = JSON.parse(personData);
-    
+
     loadProducts();
 } else {
     window.location = "/";
@@ -39,12 +41,12 @@ function loadProducts() {
                                 Editar
                             </button>
 
-                            <button class="delete-button" onclick="openDeleteModal(${product.id})">
+                            <button class="delete-button" onclick="${productToDeleteID = product.id})" data-bs-target="#deleteProductModal" data-bs-toggle="modal">
                                 <i class="fa fa-trash" style="color: white;"></i>
                             </button>
                         </div>
                     </div>
-                `; 
+                `;
             });
 
             productsContainer.innerHTML += "</div>";
@@ -56,8 +58,18 @@ function loadProducts() {
         });
 }
 
-function openCreateEditModal(id) {
-
+function deleteProduct() {
+    if (productToDeleteID) {
+        fetch("/products/" + productToDeleteID, { method: 'DELETE' })
+            .then(function (response) { return response.json() })
+            .then(function (data) {
+                window.location.reload();
+            })
+            .catch(error => {
+                document.getElementById('excluirEventoBotao').innerHTML = "Excluir evento";
+                alert('Erro ao excluir evento via API JSONServer');
+            });
+    } else alert("Produto não encontrado.")
 }
 
 function readFile(el) {
