@@ -21,7 +21,7 @@
   <header>
     <h3><a href="/">Aflorá</a></h3>
     <div id="logged-content" class="header-right-content">
-      <h5><a href="/pages/product.html">Produtos</a></h5>
+      <h5><a href="/pages/products.html">Produtos</a></h5>
 
       <h5><a href="/pages/blog.html">Blog</a></h5>
     </div>
@@ -39,7 +39,7 @@
     <div id="products-container">
       <div class="products-list-header">
         <h3 id="products-list-title"></h3>
-        <button id="createButton" data-bs-target="#deleteProductModal" data-bs-toggle="modal">
+        <button id="createButton" data-bs-target="#createUpdateProductModal" data-bs-toggle="modal" onclick="openCreateProductModal()">
           <i class="fa fa-plus" style="color: #ffffff;"></i>
         </button>
       </div>
@@ -67,11 +67,11 @@
   </footer>
 
   <!-- Delete product -->
-  <div class="modal fade" id="deleteProductModal" aria-hidden="true" aria-labelledby="loginModalLabel" tabindex="-1">
+  <div class="modal fade" id="deleteProductModal" aria-hidden="true" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="selectedProductID = null"></button>
 
           <div class="d-flex flex-column align-items-center login-modal-body">
             <h4 class="text-center">Tem cereteza que deseja excluir este produto?</h4>
@@ -81,11 +81,47 @@
                 Sim
               </button>
 
-              <button class="btn second-login-button" data-bs-dismiss="modal">
+              <button class="btn second-login-button" data-bs-dismiss="modal" onclick="selectedProductID = null">
                 Não
               </button>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create/Update product -->
+  <div class="modal fade" id="createUpdateProductModal" aria-hidden="true" aria-labelledby="createUpdateProductLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h1 class="modal-title fs-5" id="createUpdateProductLabel"> </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="selectedProductID = null"></button>
+        </div>
+        <div class="modal-body border-0">
+          <form id="createUpdateProductForm" onsubmit="return false;">
+            <label for="name" class="m-0">Nome do produto *</label>
+            <input class="w-100" id="productNameInput" name="name" type="text">
+
+            <label for="price" class="m-0">Preço do produto *</label>
+            <input class="w-100" id="productPriceInput" name="price" type="text">
+
+            <label for="description" class="m-0">Descrição do produto *</label>
+            <textarea class="w-100" id="productDescriptionInput" name="description"></textarea>
+
+            <label for="image" id="imageLabel">Imagem do produto *</label>
+            <input class="w-100" id="productImageInput" name="image" type="file" onchange="readFile(this)">
+          </form>
+        </div>
+        <div class="modal-footer border-0">
+          <button class="btn second-login-button" data-bs-dismiss="modal" onclick="selectedProductID = null">
+            Voltar
+          </button>
+          <button style="background-color: #FFEEDC; border: 1px solid black;" class="btn btn-green" id="createUpdateProductButton"
+            onclick="createOrUpdateProduct()">
+            Cadastrar
+          </button>
         </div>
       </div>
     </div>

@@ -21,7 +21,7 @@ fetch("/products/" + productId)
             data.images.forEach((image, index) => {
                 document.getElementById('carousel-product-images').innerHTML += `
                     <div class="carousel-item ${index === 0 ? "active" : ""}">
-                        <img src="data:image/png;base64, ${image}" alt="${data.name}-${index}" onerror="this.onerror=null; this.src='../assets/images/product-1.png'">
+                        <img src="${image}" alt="${data.name}-${index}" onerror="this.onerror=null; this.src='../assets/images/product-1.png'">
                     </div>
                 `;
             });

@@ -14,9 +14,12 @@ fetch("/products")
                 productsContent.innerHTML += `
                     <a href="/pages/product.html?id=${product.id}">
                         <div class="product">
-                            <img src="data:image/png;base64, ${product.images[0]}" alt="${product.name}" onerror="this.onerror=null; this.src='../assets/images/product-1.png'">
-                            <h5>${product.name}</h5>
-                            <h4>R$ ${product.price}</h4>
+                            <div class="image-container" style="background-image: url('${product.images[0]}');"></div>
+
+                            <div>
+                                <h5>${product.name}</h5>
+                                <h4>R$ ${product.price}</h4>
+                            </div>
                         </div>
                     </a>
                 `;
