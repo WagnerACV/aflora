@@ -28,7 +28,29 @@
   </header>
 
   <div class="blog-container">
-  </div>
+    <section class="s1">
+        <div class="s1-container">
+            <h1>Gerenciar Blog</h1>
+
+            <button class="s1-button2" data-bs-target="#createUpdatePostModal" data-bs-toggle="modal" onclick="openCreatePostModal()">Criar novo post</button>
+        </div>
+    </section>
+
+    <section class="s2">
+      <div class="blog-managment-header">
+        <h2 id="posts-list-title">Posts</h2>
+        <h6>Gerencie seus posts aqui.</h6>
+      </div>
+
+      <div id="loadSpinner" style="height: 100%; display: none; justify-content: center; align-items: center;">
+        <div class="spinner-border text-dark" role="status" style="margin-top: 4px;">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
+      <div id="posts-list"></div>
+    </section>
+</div>
 
   <footer>
     <div style="height: 1px; border: 1px solid black; margin: 24px 0;"></div>
@@ -47,6 +69,66 @@
       </div>
     </div>
   </footer>
+
+  <!-- Delete product -->
+  <div class="modal fade" id="deletePostModal" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="selectedPostID = null"></button>
+
+          <div class="d-flex flex-column align-items-center login-modal-body">
+            <h4 class="text-center">Tem cereteza que deseja excluir este post?</h4>
+
+            <div>
+              <button class="btn first-login-button" onclick="deletePost()">
+                Sim
+              </button>
+
+              <button class="btn second-login-button" data-bs-dismiss="modal" onclick="selectedPostID = null">
+                Não
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create/Update product -->
+  <div class="modal fade" id="createUpdatePostModal" aria-hidden="true" aria-labelledby="createUpdatePostLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h1 class="modal-title fs-5" id="createUpdatePostLabel"> </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="selectedPostID = null"></button>
+        </div>
+        <div class="modal-body border-0">
+          <form id="createUpdatePostForm" onsubmit="return false;">
+            <label for="title" class="m-0">Título do post *</label>
+            <input class="w-100" id="postTitleInput" name="title" type="text">
+
+            <label for="type" class="m-0">Tipo do post *</label>
+            <input class="w-100" id="postTypeInput" name="type" type="text">
+
+            <label for="postText" class="m-0">Texto do post *</label>
+            <textarea class="w-100" id="postTextInput" name="postText"></textarea>
+
+            <label for="image" id="imageLabel">Imagem do post *</label>
+            <input class="w-100" id="postImageInput" name="image" type="file" onchange="readFile(this)">
+          </form>
+        </div>
+        <div class="modal-footer border-0">
+          <button class="btn second-login-button" data-bs-dismiss="modal" onclick="selectedPostID = null">
+            Voltar
+          </button>
+          <button style="background-color: #FFEEDC; border: 1px solid black;" class="btn btn-green" id="createUpdatePostButton" onclick="createOrUpdatePost()">
+            Cadastrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Sign In/Sign Up modal -->
   <div class="modal fade" id="loginModal" aria-hidden="true" aria-labelledby="loginModalLabel" tabindex="-1">
