@@ -58,4 +58,73 @@ body {
             margin: 0 0 64px;
         }
     }
+
+    #posts-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: center;
+        align-items: stretch;
+        justify-content: center;
+        gap: 16px;
+
+        padding: 32px;
+
+        .post {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            box-shadow: 5px 5px 8px 1px rgba(0, 0, 0, 0.7);
+            border: 1px solid black;
+
+            text-align: center;
+
+            a {
+                background-size: cover;
+                background-position: center;
+                width: 304px;
+                height: 364px;
+
+                @media (max-width: 400px) {
+                    width: 244px;
+                    height: 304px;
+                }
+            }
+
+            h5 {
+                margin-top: 8px;
+                font-size: 18px;
+            }
+
+            h4 {
+                font-size: 20px;
+            }
+
+            .buttonsContainer {
+                margin: 32px 0 8px;
+
+                display: flex;
+                justify-content: center;
+                flex-direction: row;
+                gap: 16px;
+
+                .edit-button {
+                    padding: 4px 0;
+                    width: 124px;
+                    background-color: #FFFDBD;
+                    font-size: 16px;
+                    border: 1px solid black;
+                }
+
+                .delete-button {
+                    padding: 4px 0;
+                    width: 62px;
+                    background-color: #B42318;
+                    font-size: 16px;
+                    border: 1px solid black;
+                }
+            }
+        }
+    }
 }

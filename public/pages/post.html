@@ -27,7 +27,67 @@
     </div>
   </header>
 
-  <div class="blog-container">
+  <div id="post-header">
+    <div id="loadSpinner" style="height: 100%; display: none; justify-content: center; align-items: center;">
+      <div class="spinner-border text-dark" role="status" style="margin-top: 4px;">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <div class="division">
+      <div class="description">
+        <a href="/pages/blog.html">
+          <div>
+            <i class="fa fa-arrow-left"></i>
+            <span>Ver tudo</span>
+          </div>
+        </a>
+        
+        <h3 id="post-type"></h3>
+        <h1 id="post-title"></h1>
+        <h3 id="post-description"></h3>
+      </div>
+      <div class="image">
+        <div id="imagesCarousel" class="carousel carousel-fade" data-bs-ride="false">
+          <div class="carousel-inner" id="carousel-post-images"></div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#imagesCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#imagesCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div  id="post-container">
+    <div class="division">
+      <div class="share">
+        <h3>Autor:</h3>
+        <h4 id="post-author"></h4>
+
+        <div style="height: 1px; border: 1px solid black; margin: 24px 0;"></div>
+
+        <h2>Mantenha-se atualizado(a)!</h2>
+
+        <button>Inscrever na newsletter</button>
+
+        <h6>Se inscrevendo, você recebera emails e notificações sobre os posts dos contribuidores</h6>
+
+        <div style="height: 1px; border: 1px solid black; margin: 24px 0;"></div>
+
+        <h5>Compartilhe com os outros!</h5>
+        <div id="post-share"></div>
+      </div>
+
+      <div id="content">
+
+      </div>
+    </div>
   </div>
 
   <footer>
@@ -39,6 +99,7 @@
       <div class="footer-info">
         <div class="footer-social-network">
           <a href="https://www.instagram.com/aflora"><img src="../assets/images/instagram-icon.svg" alt="Instagram"></a>
+          <a href="https://wa.me/5531999999999"><img src="../assets/images/whatsapp-icon.png" alt="whatsapp"></a>
           <a href="https://www.facebook.com/aflora"><img src="../assets/images/facebook-icon.svg" alt="Facebook"></a>
           <a href="https://www.twiiter.com/aflora"><img src="../assets/images/x-icon.svg" alt="X"></a>
         </div>

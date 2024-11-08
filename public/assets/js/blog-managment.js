@@ -35,8 +35,9 @@ function loadPosts() {
                         <a href="/pages/post.html?id=${post.id}" style="background-image: url('${post.images[0]}');"> </a>
 
                         <div>
-                            <h5>${post.title}</h5>
-                            <h4>R$ ${post.postText}</h4>
+                            <h5>${post.type}</h5>
+                            <h4>${post.title}</h4>
+                            <h6>${post.author} - ${post.creationDate}</h6>
                             <div class="buttonsContainer">
                                 <button class="edit-button" onclick="openEditPostModal('${post.id}')" data-bs-target="#createUpdatePostModal" data-bs-toggle="modal">
                                     Editar
@@ -123,6 +124,8 @@ function createOrUpdatePost() {
             if (editPost && editPost.id) {
                 postData.id = editPost.id;
                 postData.images = postImageBase64 ? [postImageBase64] : editPost.images;
+                postData.creationDate = editPost.creationDate;
+                postData.author = editPost.author;
 
                 fetch("/posts/" + postData.id, {
                     method: 'PUT',
@@ -143,6 +146,8 @@ function createOrUpdatePost() {
             } else {
                 postData.id = generateUUID();
                 postData.images = [postImageBase64];
+                postData.creationDate = new Date().toLocaleDateString();
+                postData.author = personData.name;
 
                 // Cria novo post
                 fetch("/posts", {
