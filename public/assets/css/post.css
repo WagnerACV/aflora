@@ -11,9 +11,16 @@ body {
 }
 
 #post-container {
+    padding: 32px;
+
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 100%;    
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    gap: 64px;
 }
 
 .division {
@@ -51,19 +58,48 @@ body {
 
     #post-type {
         margin: 32px 0;
-        font-size: 40px;
+        font-size: 12px;
         font-weight: 700;
+        background-color: #FDC47F;
+        border: 1px solid black;
+        text-align: center;
+        padding: 4px 0;
+        max-width: 124px;
     }
 
     #post-title {
         margin: 32px 0;
-        font-size: 24px;
+        font-size: 40px;
         font-weight: 700;
     }
 
     #post-description {
         margin: 0 0 64px;
         font-size: 16px;
+    }
+}
+
+.share {
+    h3 {
+        font-size: 20px;
+    }
+
+    h4 {
+        font-size: 16px;
+    }
+
+    h5 {
+        font-size: 12px;
+    }
+
+    .subscribe-button {
+        width: 100%;
+        color: white;
+        background-color: black;
+        height: 40px;
+        font-size: 16px;
+        margin: 12px 0;
+        border: none;
     }
 
     #post-share {
@@ -72,7 +108,6 @@ body {
         flex-direction: row;
         flex-wrap: wrap;
         gap: 28px;
-        justify-content: center;
         margin-top: 16px;
 
         img {

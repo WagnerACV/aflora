@@ -45,3 +45,7 @@ fetch("/posts/" + postId)
         document.getElementById('loadSpinner').style.display = "none";
         alert(error);
     });
+
+function subscribe() {
+    
+}
