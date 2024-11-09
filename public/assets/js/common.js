@@ -164,7 +164,7 @@ function createUser(userData) {
     userData.id = generateUUID();
     userData.photo = "";
     userData.userType = "client";
-    userData.invitationCode = "";
+    userData.invitationCode = userData.name.split(" ")[0] + "-" + userData.id.slice(-3);
     subscribedNewsletter = false;
 
     delete userData.repeatPassword;

@@ -9,3 +9,80 @@ body {
     flex-direction: column;
     justify-content: space-between;
 }
+
+.users-managment-container {
+    padding: 32px;
+
+    @media (max-width: 500px) {
+        padding: 16px;
+    }
+
+    .users-managment-title-container {
+        display: flex;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        margin-bottom: 64px;
+    }
+
+    .users-managment-subtitle-container {
+        h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        margin-bottom: 32px;
+    }
+
+    .serach-container {
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 32px;
+
+        input {
+            width: 200px;
+        }
+
+        button {
+            background-color: transparent;
+            border: 1px solid black;
+            font-size: 16px;   
+            padding: 8px 16px;
+        }
+    }
+}
+
+h6 {
+    font-size: 20px;
+}
+
+#users-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 32px;
+
+    .user-container {
+        border: 1px solid black;
+        padding: 16px;
+
+        p {
+            margin: 4px 0 0;
+        }
+
+        span {
+            font-weight: 500;
+        }
+    }
+}
