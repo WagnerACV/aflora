@@ -128,3 +128,12 @@ body {
         }
     }
 }
+
+.radio-buttons-container {
+    legend {
+        font-size: 16px;
+        margin: 0;
+    }
+
+    margin-bottom: 4px;
+}

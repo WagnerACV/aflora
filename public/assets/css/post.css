@@ -48,6 +48,14 @@ body {
 }
 
 .description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @media (max-width: 700px) {
+        align-items: center;
+    }
+
     a {
         color: black;
         text-decoration: none;
@@ -55,25 +63,35 @@ body {
     }
 
     #post-type {
-        margin: 32px 0;
+        margin: 32px 0 16px;
         font-size: 12px;
         font-weight: 700;
         background-color: #FDC47F;
         border: 1px solid black;
         text-align: center;
-        padding: 4px 0;
-        max-width: 124px;
+        padding: 8px 12px;
+
+        @media (max-width: 700px) {
+            margin: 32px 0 12px;
+        }
     }
 
     #post-title {
-        margin: 32px 0;
+        margin: 16px 0;
         font-size: 40px;
         font-weight: 700;
+
+        @media (max-width: 700px) {
+            margin: 0;
+        }
     }
 
     #post-description {
-        margin: 0 0 64px;
         font-size: 16px;
+
+        @media (max-width: 700px) {
+            margin: 0 0 12px;
+        }
     }
 }
 

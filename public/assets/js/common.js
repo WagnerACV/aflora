@@ -33,11 +33,11 @@ function loadUserInfo() {
         }
 
         const userPhoto = personData.photo
-            ? `<img data-bs-toggle="dropdown" src=${personData.photo} alt="Foto do usuário" class="user-photo"></img>`
-            : `<div data-bs-toggle="dropdown" class="user-photo">${personData.name.slice(0, 1)}</div>`;
+            ? `<div data-bs-toggle="dropdown" class="user-dropdown" style="background-image: url('${personData.photo}');"></div>`
+            : `<div data-bs-toggle="dropdown" class="user-dropdown">${personData.name.slice(0, 1)}</div>`;
 
         loggedContent.innerHTML += `
-            <div class="dropdown user-dropdown">
+            <div class="dropdown">
                 ${userPhoto}
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="/pages/profile.html">Perfil</a></li>
@@ -78,7 +78,6 @@ function signIn() {
                     if (loggedUser && loggedUser.id) {
                         delete loggedUser.password;
                         delete loggedUser.subscribedNewsletter;
-                        delete loggedUser.invitationCode;
 
                         localStorage.setItem("user", JSON.stringify(loggedUser));
                         
@@ -180,7 +179,7 @@ function createUser(userData) {
     })
         .then(function (response) { return response.json() })
         .then(function (data) {
-            delete userData.login;
+            delete userData.subscribedNewsletter;
             delete userData.password;
 
             localStorage.setItem("user", JSON.stringify(userData));
@@ -207,4 +206,24 @@ function generateUUID() { // Public Domain/MIT
         }
         return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
+}
+
+function phoneMask(event) {
+    const input = event.target;
+    let valor = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+    if (valor.length > 11) valor = valor.slice(0, 11);
+
+    // Formata o número de acordo com o tamanho
+    if (valor.length > 10) {
+        valor = valor.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    } else if (valor.length > 6) {
+        valor = valor.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+    } else if (valor.length > 2) {
+        valor = valor.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+    } else {
+        valor = valor.replace(/(\d*)/, '($1');
+    }
+
+    input.value = valor;
 }

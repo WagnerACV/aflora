@@ -29,11 +29,12 @@
 
   <div class="blog-container">
     <section class="s1">
-        <div class="s1-container">
-            <h1>Gerenciar Blog</h1>
+      <div class="s1-container">
+        <h1>Gerenciar Blog</h1>
 
-            <button class="s1-button2" data-bs-target="#createUpdatePostModal" data-bs-toggle="modal" onclick="openCreatePostModal()">Criar novo post</button>
-        </div>
+        <button class="s1-button2" data-bs-target="#createUpdatePostModal" data-bs-toggle="modal"
+          onclick="openCreatePostModal()">Criar novo post</button>
+      </div>
     </section>
 
     <section class="s2">
@@ -50,7 +51,7 @@
 
       <div id="posts-list"></div>
     </section>
-</div>
+  </div>
 
   <footer>
     <div style="height: 1px; border: 1px solid black; margin: 24px 0;"></div>
@@ -76,7 +77,8 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="selectedPostID = null"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            onclick="selectedPostID = null"></button>
 
           <div class="d-flex flex-column align-items-center login-modal-body">
             <h4 class="text-center">Tem cereteza que deseja excluir este post?</h4>
@@ -97,12 +99,14 @@
   </div>
 
   <!-- Create/Update product -->
-  <div class="modal fade" id="createUpdatePostModal" aria-hidden="true" aria-labelledby="createUpdatePostLabel" tabindex="-1">
+  <div class="modal fade" id="createUpdatePostModal" aria-hidden="true" aria-labelledby="createUpdatePostLabel"
+    tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header border-0">
           <h1 class="modal-title fs-5" id="createUpdatePostLabel"> </h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="selectedPostID = null"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            onclick="selectedPostID = null"></button>
         </div>
         <div class="modal-body border-0">
           <form id="createUpdatePostForm" onsubmit="return false;">
@@ -115,6 +119,14 @@
             <label for="postText" class="m-0">Texto do post *</label>
             <textarea class="w-100" id="postTextInput" name="postText"></textarea>
 
+            <div class="radio-buttons-container">
+              <legend>Definir este post como principal?</legend>
+              <input type="radio" id="isMainPost" name="isMainPost" value="true" />
+              <label for="isMainPost">Sim</label>
+              <input type="radio" id="isNotMainPost" name="isMainPost" value="false" />
+              <label for="isNotMainPost">Não</label>
+            </div>
+
             <label for="image" id="imageLabel">Imagem do post *</label>
             <input class="w-100" id="postImageInput" name="image" type="file" onchange="readFile(this)">
           </form>
@@ -123,7 +135,8 @@
           <button class="btn second-login-button" data-bs-dismiss="modal" onclick="selectedPostID = null">
             Voltar
           </button>
-          <button style="background-color: #FFEEDC; border: 1px solid black;" class="btn btn-green" id="createUpdatePostButton" onclick="createOrUpdatePost()">
+          <button style="background-color: #FFEEDC; border: 1px solid black;" class="btn btn-green"
+            id="createUpdatePostButton" onclick="createOrUpdatePost()">
             Cadastrar
           </button>
         </div>
@@ -210,7 +223,7 @@
             <input class="w-100" name="email" type="text">
 
             <label for="phone" class="m-0">Telefone *</label>
-            <input class="w-100" name="phone" type="text" placeholder="(99) 99999-9999" maxlength="15">
+            <input class="w-100" id="phoneInput" name="phone" type="text" placeholder="(99) 99999-9999" maxlength="15" oninput="phoneMask(event)">type="text" placeholder="(99) 99999-9999" maxlength="15">
 
             <label for="password" class="m-0">Senha *</label>
             <input class="w-100" name="password" type="password">

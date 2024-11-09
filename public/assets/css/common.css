@@ -65,11 +65,19 @@ header {
 
         .user-dropdown {
             background-color: white;
-            padding: 4px 12px;
             border-radius: 50%;
             border: 1px solid black;
             font-size: 16px;
             font-weight: 600;
+
+            width: 32px;
+            height: 32px;
+
+            cursor: pointer;
+
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         button {

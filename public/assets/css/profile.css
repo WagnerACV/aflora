@@ -9,3 +9,135 @@ body {
     flex-direction: column;
     justify-content: space-between;
 }
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 32px;
+
+    @media (max-width: 500px) {
+        padding: 16px;
+    }
+
+    .profile-title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 32px;
+        margin: 24px 0 64px;
+
+        h1 {
+            width: 100%;
+            text-align: center;
+            font-size: 62px;
+            font-weight: 700;
+        }
+
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #FDC47F;
+            width: 44px;
+            height: 32px;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 50%;
+        }
+    }
+
+    @media (max-width: 500px) {
+        padding: 16px;
+    }
+
+    .photo-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 32px;
+
+        margin: 0 0 64px;
+
+        #user-photo {
+            border: 1px solid black;
+            border-radius: 50%;
+            height: 160px;
+            width: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+
+            text-align: center;
+
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+
+    .user-info {
+        width: 100%;
+        max-width: 560px;
+
+        div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 16px;
+
+            border: 1px solid black;
+
+            margin: 0 0 24px;
+            padding: 12px;
+
+            p {
+                margin: 0;
+                font-size: 20px;
+            }
+        }
+    }
+
+    h2 {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .invite-code-container {
+        width: 100%;
+        max-width: 560px;
+
+        border: 1px solid black;
+        padding: 12px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+
+        .invite-code-text {
+            display: flex;
+        }
+
+        h5 {
+            margin: 0 16px 12px 0;
+        }
+
+        span {
+            background-color: #FDC47F;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 50%;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+}

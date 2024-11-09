@@ -69,6 +69,9 @@ function openCreatePostModal() {
     document.getElementById('postTypeInput').value = "";
     document.getElementById('postTextInput').value = "";
     document.getElementById('postImageInput').value = null;
+
+    document.getElementById('isMainPost').checked = false;
+    document.getElementById('isNotMainPost').checked = false;
 }
 
 function openEditPostModal(id) {
@@ -82,22 +85,25 @@ function openEditPostModal(id) {
     document.getElementById('postTypeInput').value = postToEdit.type;
     document.getElementById('postTextInput').value = postToEdit.postText;
     document.getElementById('postImageInput').value = null;
+
+    if (postToEdit.isMainPost) document.getElementById('isMainPost').checked = true;
+    else document.getElementById('isNotMainPost').checked = true;
 }
 
 function createOrUpdatePost() {
     const formValue = $('#createUpdatePostForm').serializeArray();
     let postData = {};
     let hasError = false;
-    let editPost = selectedPostID 
-        ? posts.find(currentPost => String(currentPost.id) === String(selectedPostID)) 
+    let editPost = selectedPostID
+        ? posts.find(currentPost => String(currentPost.id) === String(selectedPostID))
         : null;
 
     if (formValue && formValue.length) {
         formValue.every(field => {
             if (field.value === '' || field.value === null || field.value === undefined) {
-                if(field.name === "title") alert("O campo \"Título do post\" é obrigatório.");
-                if(field.name === "type") alert("O campo \"Tipo do post\" é obrigatório.");
-                if(field.name === "postText") alert("O campo \"Texto do post\" é obrigatório.");
+                if (field.name === "title") alert("O campo \"Título do post\" é obrigatório.");
+                if (field.name === "type") alert("O campo \"Tipo do post\" é obrigatório.");
+                if (field.name === "postText") alert("O campo \"Texto do post\" é obrigatório.");
 
                 hasError = true;
                 return false;
@@ -113,12 +119,24 @@ function createOrUpdatePost() {
             hasError = true;
         }
 
+        let isMainPost = document.getElementById('isMainPost').checked;
+        let isNotMainPost = document.getElementById('isNotMainPost').checked;
+
+        if (!isMainPost && !isNotMainPost) {
+            alert("É obrigatório marcar uma das opções do campo \"Definir este post como principal?\"");
+            hasError = true;
+        } else {
+            postData.isMainPost = isMainPost;
+        }
+
         if (!hasError) {
             document.getElementById('createUpdatePostButton').innerHTML = `
                 <div class="spinner-border text-light" role="status" style="margin-top: 4px;">
                     <span class="sr-only">Loading...</span>
                 </div>
             `;
+
+            let currentMainPost = posts.find(post => post.isMainPost);
 
             // Atualiza post
             if (editPost && editPost.id) {
@@ -136,7 +154,25 @@ function createOrUpdatePost() {
                 })
                     .then(function (response) { return response.json() })
                     .then(function (data) {
-                        window.location.reload();
+                        if (isMainPost && currentMainPost?.id) {
+                            fetch("/posts/" + currentMainPost.id, {
+                                method: 'PATCH',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ isMainPost: false }),
+                            })
+                                .then(function (response) { return response.json() })
+                                .then(function (data) {
+                                    window.location.reload();
+                                })
+                                .catch(error => {
+                                    document.getElementById('createUpdatepostButton').innerHTML = "Editar post";
+                                    alert('Erro ao editar post via API JSONServer.');
+                                });
+                        } else {
+                            window.location.reload();
+                        }
                     })
                     .catch(error => {
                         document.getElementById('createUpdatepostButton').innerHTML = "Editar post";
@@ -159,7 +195,25 @@ function createOrUpdatePost() {
                 })
                     .then(function (response) { return response.json() })
                     .then(function (data) {
-                        window.location.reload();
+                        if (isMainPost && currentMainPost?.id) {
+                            fetch("/posts/" + currentMainPost.id, {
+                                method: 'PATCH',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ isMainPost: false }),
+                            })
+                                .then(function (response) { return response.json() })
+                                .then(function (data) {
+                                    window.location.reload();
+                                })
+                                .catch(error => {
+                                    document.getElementById('createUpdatepostButton').innerHTML = "Editar post";
+                                    alert('Erro ao editar post via API JSONServer.');
+                                });
+                        } else {
+                            window.location.reload();
+                        }
                     })
                     .catch(error => {
                         alert('Erro ao criar post via API JSONServer.');

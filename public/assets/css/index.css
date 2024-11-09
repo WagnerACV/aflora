@@ -7,13 +7,16 @@ section {
 
     h1 {
         color: #FDC47F;
+        margin: 0;
     }
 
     h5 {
         color: white;
+        margin: 0;
     }
 
     .s1-container {
+        min-height: 320px;
         width: 60%;
 
         @media (max-width: 600px) {
@@ -26,6 +29,7 @@ section {
         columns: black;
         border: 1px solid white;
         background-color: #FDC47F;
+        margin-right: 16px;
     }
 
     .s1-button2 {
@@ -33,6 +37,15 @@ section {
         color: #00FF95;
         border: 1px solid white;
         background-color: transparent;
+    }
+
+    .s1-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+
+        gap: 16px;
     }
 }
 
