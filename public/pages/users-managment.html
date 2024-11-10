@@ -39,8 +39,9 @@
         </div>
 
         <div class="serach-container">
-            <input type="text">
-            <button>Pesquisar</button>
+            <input id="searchInput" type="text">
+            <button onclick="searchUser()">Pesquisar</button>
+            <button style="display: none;" id="deleteSeachButton" onclick="deleteSearch()">Limpar</button>
         </div>
 
         <div class="users-list-container">

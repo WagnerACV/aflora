@@ -23,23 +23,35 @@ body {
         flex-direction: column;
         align-items: center;
 
+        margin-bottom: 64px;
+
+        @media (max-width: 500px) {
+            margin-bottom: 32px;
+        }
+
         h1 {
             font-size: 56px;
             font-weight: 700;
             margin-bottom: 16px;
-        }
 
-        margin-bottom: 64px;
+            @media (max-width: 500px) {
+                font-size: 40px;
+            }
+        }
     }
 
     .users-managment-subtitle-container {
+        margin-bottom: 32px;
+
         h2 {
             font-size: 48px;
             font-weight: 700;
             margin-bottom: 16px;
-        }
 
-        margin-bottom: 32px;
+            @media (max-width: 500px) {
+                font-size: 28px;
+            }
+        }
     }
 
     .serach-container {
@@ -48,6 +60,10 @@ body {
         flex-direction: row;
         flex-wrap: wrap;
         gap: 32px;
+
+        @media (max-width: 500px) {
+            gap: 16px;
+        }
 
         input {
             width: 200px;
