@@ -1,14 +1,15 @@
 var personData;
 var eventsList;
 
-if (localStorage.getItem("user")) {
-    personData = JSON.parse(localStorage.getItem("user"));
-}
+var loggedContent = document.getElementById('logged-content');
+var signInForm = document.getElementById("sign-in-form");
+var signInButton = document.getElementById('signInButton');
+
+if (localStorage.getItem("user")) personData = JSON.parse(localStorage.getItem("user"));
 
 loadUserInfo();
 
 function loadUserInfo() {
-    const loggedContent = document.getElementById('logged-content');
     if (personData && personData.id) {
         if (personData.userType === "admin") {
             loggedContent.innerHTML += `
@@ -56,7 +57,7 @@ function logout() {
 }
 
 function signIn() {
-    const form = document.getElementById("sign-in-form").getElementsByTagName("input");
+    const form = signInForm.getElementsByTagName("input");
     hasError = false;
 
     if (form && form.length) {
@@ -68,7 +69,7 @@ function signIn() {
         }
 
         if (!hasError) {
-            document.getElementById('signInButton').innerHTML = `<div class="loader"></div>`;
+            signInButton.innerHTML = `<div class="loader"></div>`;
 
             fetch("/users")
                 .then(function (response) { return response.json() })
@@ -77,18 +78,17 @@ function signIn() {
 
                     if (loggedUser && loggedUser.id) {
                         delete loggedUser.password;
-                        delete loggedUser.subscribedNewsletter;
 
                         localStorage.setItem("user", JSON.stringify(loggedUser));
                         
                         window.location.reload();
                     } else {
-                        document.getElementById('signInButton').innerHTML = "Entrar";
+                        signInButton.innerHTML = "Entrar";
                         alert("Usuário não encontrado!");
                     }
                 })
                 .catch(error => {
-                    document.getElementById('signInButton').innerHTML = "Entrar";
+                    signInButton.innerHTML = "Entrar";
                     alert('Erro ao ler eventos via API JSONServer');
                 });
         }
@@ -140,20 +140,20 @@ function signUp() {
         }
 
         if (!hasError && userData) {
-            document.getElementById('signUpButton').innerHTML = `<div class="loader"></div>`;
+            signInButton.innerHTML = `<div class="loader"></div>`;
 
             fetch("/users?email=" + userData.email)
                 .then(function (response) { return response.json() })
                 .then(function (data) {
                     if (data && data.length) {
                         alert("Já existe um usuário cadastrado com esse e-mail.");
-                        document.getElementById('signUpButton').innerHTML = "Cadastrar";
+                        signInButton.innerHTML = "Cadastrar";
                     } else {
                         createUser(userData);
                     }
                 })
                 .catch(error => {
-                    document.getElementById('signUpButton').innerHTML = "Cadastrar";
+                    signInButton.innerHTML = "Cadastrar";
                     alert('Erro ao ler eventos via API JSONServer');
                 });
         }
@@ -179,7 +179,6 @@ function createUser(userData) {
     })
         .then(function (response) { return response.json() })
         .then(function (data) {
-            delete userData.subscribedNewsletter;
             delete userData.password;
 
             localStorage.setItem("user", JSON.stringify(userData));
@@ -187,7 +186,7 @@ function createUser(userData) {
             window.location.reload();
         })
         .catch(error => {
-            document.getElementById('signInButton').innerHTML = "Cadastrar";
+            signInButton.innerHTML = "Cadastrar";
             alert('Erro ao criar usuário via API JSONServer.');
         });
 }

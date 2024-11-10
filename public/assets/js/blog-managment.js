@@ -1,8 +1,22 @@
-var postImageBase64;
 var personData = localStorage.getItem("user");
-var posts;
 
+var posts;
 var selectedPostID;
+var postImageBase64;
+
+var postsList = document.getElementById('posts-list');
+var loadSpinner = document.getElementById('loadSpinner');
+var postListTitle = document.getElementById('posts-list-title');
+var createUpdatePostLabel = document.getElementById('createUpdatePostLabel');
+var createUpdatePostButton = document.getElementById('createUpdatePostButton');
+var postTitleInput = document.getElementById('postTitleInput');
+var postTypeInput = document.getElementById('postTypeInput');
+var postTextInput = document.getElementById('postTextInput');
+var postImageInput = document.getElementById('postImageInput');
+var isMainPostEl = document.getElementById('isMainPost');
+var isNotMainPostEl = document.getElementById('isNotMainPost');
+var deleteButton = document.getElementById('excluirEventoBotao');
+var createUpdatepostButton = document.getElementById('createUpdatepostButton');
 
 if (personData && JSON.parse(personData).userType === "admin") {
     personData = JSON.parse(personData);
@@ -13,9 +27,6 @@ if (personData && JSON.parse(personData).userType === "admin") {
 }
 
 function loadPosts() {
-    const postsList = document.getElementById('posts-list');
-    const loadSpinner = document.getElementById('loadSpinner');
-
     postsList.style.display = "none";
     loadSpinner.style.display = "flex";
 
@@ -27,7 +38,7 @@ function loadPosts() {
             postsList.style.display = "flex";
             loadSpinner.style.display = "none";
 
-            document.getElementById('posts-list-title').innerHTML = `Posts (${posts.length})`;
+            postListTitle.innerHTML = `Posts (${posts.length})`;
 
             posts.forEach(post => {
                 postsList.innerHTML += `
@@ -62,32 +73,29 @@ function loadPosts() {
 function openCreatePostModal() {
     selectedPostID = null;
 
-    document.getElementById('createUpdatePostLabel').innerHTML = "Cadastrar post";
-    document.getElementById('createUpdatePostButton').innerHTML = "Cadastrar";
-
-    document.getElementById('postTitleInput').value = "";
-    document.getElementById('postTypeInput').value = "";
-    document.getElementById('postTextInput').value = "";
-    document.getElementById('postImageInput').value = null;
-
-    document.getElementById('isMainPost').checked = false;
-    document.getElementById('isNotMainPost').checked = false;
+    createUpdatePostLabel.innerHTML = "Cadastrar post";
+    createUpdatePostButton.innerHTML = "Cadastrar";
+    postTitleInput.value = "";
+    postTypeInput.value = "";
+    postTextInput.value = "";
+    postImageInput.value = null;
+    isMainPostEl.checked = false;
+    isNotMainPostEl.checked = false;
 }
 
 function openEditPostModal(id) {
     selectedPostID = id;
     let postToEdit = posts.find(currentPosts => String(currentPosts.id) === String(selectedPostID));
 
-    document.getElementById('createUpdatePostLabel').innerHTML = "Editar post";
-    document.getElementById('createUpdatePostButton').innerHTML = "Editar";
+    createUpdatePostLabel.innerHTML = "Editar post";
+    createUpdatePostButton.innerHTML = "Editar";
+    postTitleInput.value = postToEdit.title;
+    postTypeInput.value = postToEdit.type;
+    postTextInput.value = postToEdit.postText;
+    postImageInput.value = null;
 
-    document.getElementById('postTitleInput').value = postToEdit.title;
-    document.getElementById('postTypeInput').value = postToEdit.type;
-    document.getElementById('postTextInput').value = postToEdit.postText;
-    document.getElementById('postImageInput').value = null;
-
-    if (postToEdit.isMainPost) document.getElementById('isMainPost').checked = true;
-    else document.getElementById('isNotMainPost').checked = true;
+    if (postToEdit.isMainPost) isMainPostEl.checked = true;
+    else isNotMainPostEl.checked = true;
 }
 
 function createOrUpdatePost() {
@@ -119,8 +127,8 @@ function createOrUpdatePost() {
             hasError = true;
         }
 
-        let isMainPost = document.getElementById('isMainPost').checked;
-        let isNotMainPost = document.getElementById('isNotMainPost').checked;
+        let isMainPost = isMainPostEl.checked;
+        let isNotMainPost = isNotMainPostEl.checked;
 
         if (!isMainPost && !isNotMainPost) {
             alert("É obrigatório marcar uma das opções do campo \"Definir este post como principal?\"");
@@ -130,7 +138,7 @@ function createOrUpdatePost() {
         }
 
         if (!hasError) {
-            document.getElementById('createUpdatePostButton').innerHTML = `
+            createUpdatePostButton.innerHTML = `
                 <div class="spinner-border text-light" role="status" style="margin-top: 4px;">
                     <span class="sr-only">Loading...</span>
                 </div>
@@ -167,7 +175,7 @@ function createOrUpdatePost() {
                                     window.location.reload();
                                 })
                                 .catch(error => {
-                                    document.getElementById('createUpdatepostButton').innerHTML = "Editar post";
+                                    createUpdatepostButton.innerHTML = "Editar post";
                                     alert('Erro ao editar post via API JSONServer.');
                                 });
                         } else {
@@ -175,7 +183,7 @@ function createOrUpdatePost() {
                         }
                     })
                     .catch(error => {
-                        document.getElementById('createUpdatepostButton').innerHTML = "Editar post";
+                        createUpdatepostButton.innerHTML = "Editar post";
                         alert('Erro ao editar post via API JSONServer.');
                     });
 
@@ -208,7 +216,7 @@ function createOrUpdatePost() {
                                     window.location.reload();
                                 })
                                 .catch(error => {
-                                    document.getElementById('createUpdatepostButton').innerHTML = "Editar post";
+                                    createUpdatepostButton.innerHTML = "Editar post";
                                     alert('Erro ao editar post via API JSONServer.');
                                 });
                         } else {
@@ -231,7 +239,7 @@ function deletePost() {
                 window.location.reload();
             })
             .catch(error => {
-                document.getElementById('excluirEventoBotao').innerHTML = "Excluir post";
+                deleteButton.innerHTML = "Excluir post";
                 alert('Erro ao excluir post via API JSONServer');
             });
     } else alert("Post não encontrado.")

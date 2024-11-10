@@ -1,8 +1,20 @@
-var productImageBase64;
 var personData = localStorage.getItem("user");
-var products;
 
+var products;
 var selectedProductID;
+var productImageBase64;
+
+var productsContainer = document.getElementById('products-container');
+var loadSpinner = document.getElementById('loadSpinner');
+var productsListTitle = document.getElementById('products-list-title');
+var productsList = document.getElementById('products-list');
+var createUpdateProductLabel = document.getElementById('createUpdateProductLabel');
+var createUpdateProductButton = document.getElementById('createUpdateProductButton');
+var productNameInput = document.getElementById('productNameInput');
+var productDescriptionInput = document.getElementById('productDescriptionInput');
+var productPriceInput = document.getElementById('productPriceInput');
+var productImageInput = document.getElementById('productImageInput');
+var excluirEventoBotao = document.getElementById('excluirEventoBotao');
 
 if (personData && JSON.parse(personData).userType === "admin") {
     personData = JSON.parse(personData);
@@ -13,9 +25,6 @@ if (personData && JSON.parse(personData).userType === "admin") {
 }
 
 function loadProducts() {
-    const productsContainer = document.getElementById('products-container');
-    const loadSpinner = document.getElementById('loadSpinner');
-
     productsContainer.style.display = "none";
     loadSpinner.style.display = "flex";
 
@@ -27,9 +36,8 @@ function loadProducts() {
             productsContainer.style.display = "block";
             loadSpinner.style.display = "none";
 
-            document.getElementById('products-list-title').innerHTML = `Produtos (${products.length})`;
+            productsListTitle.innerHTML = `Produtos (${products.length})`;
 
-            const productsList = document.getElementById('products-list');
             products.forEach(product => {
                 productsList.innerHTML += `
                     <div class="product">
@@ -62,42 +70,40 @@ function loadProducts() {
 function openCreateProductModal() {
     selectedProductID = null;
 
-    document.getElementById('createUpdateProductLabel').innerHTML = "Cadastrar Produto";
-    document.getElementById('createUpdateProductButton').innerHTML = "Cadastrar";
-
-    document.getElementById('productNameInput').value = "";
-    document.getElementById('productDescriptionInput').value = "";
-    document.getElementById('productPriceInput').value = "";
-    document.getElementById('productImageInput').value = null;
+    createUpdateProductLabel.innerHTML = "Cadastrar Produto";
+    createUpdateProductButton.innerHTML = "Cadastrar";
+    productNameInput.value = "";
+    productDescriptionInput.value = "";
+    productPriceInput.value = "";
+    productImageInput.value = null;
 }
 
 function openEditProductModal(id) {
     selectedProductID = id;
     let productToEdit = products.find(currentProduct => String(currentProduct.id) === String(selectedProductID));
 
-    document.getElementById('createUpdateProductLabel').innerHTML = "Editar Produto";
-    document.getElementById('createUpdateProductButton').innerHTML = "Editar";
-
-    document.getElementById('productNameInput').value = productToEdit.name;
-    document.getElementById('productDescriptionInput').value = productToEdit.description;
-    document.getElementById('productPriceInput').value = productToEdit.price;
-    document.getElementById('productImageInput').value = null;
+    createUpdateProductLabel.innerHTML = "Editar Produto";
+    createUpdateProductButton.innerHTML = "Editar";
+    productNameInput.value = productToEdit.name;
+    productDescriptionInput.value = productToEdit.description;
+    productPriceInput.value = productToEdit.price;
+    productImageInput.value = null;
 }
 
 function createOrUpdateProduct() {
     const formValue = $('#createUpdateProductForm').serializeArray();
     let productData = {};
     let hasError = false;
-    let editProduct = selectedProductID 
-        ? products.find(currentProduct => String(currentProduct.id) === String(selectedProductID)) 
+    let editProduct = selectedProductID
+        ? products.find(currentProduct => String(currentProduct.id) === String(selectedProductID))
         : null;
 
     if (formValue && formValue.length) {
         formValue.every(field => {
             if (field.value === '' || field.value === null || field.value === undefined) {
-                if(field.name === "name") alert("O campo \"Nome do produto\" é obrigatório.");
-                if(field.name === "description") alert("O campo \"Descrição do produto\" é obrigatório.");
-                if(field.name === "price") alert("O campo \"Preço do produto\" é obrigatório.");
+                if (field.name === "name") alert("O campo \"Nome do produto\" é obrigatório.");
+                if (field.name === "description") alert("O campo \"Descrição do produto\" é obrigatório.");
+                if (field.name === "price") alert("O campo \"Preço do produto\" é obrigatório.");
 
                 hasError = true;
                 return false;
@@ -114,7 +120,7 @@ function createOrUpdateProduct() {
         }
 
         if (!hasError) {
-            document.getElementById('createUpdateProductButton').innerHTML = `
+            createUpdateProductButton.innerHTML = `
                 <div class="spinner-border text-light" role="status" style="margin-top: 4px;">
                     <span class="sr-only">Loading...</span>
                 </div>
@@ -137,7 +143,7 @@ function createOrUpdateProduct() {
                         window.location.reload();
                     })
                     .catch(error => {
-                        document.getElementById('createUpdateProductButton').innerHTML = "Editar produto";
+                        createUpdateProductButton.innerHTML = "Editar produto";
                         alert('Erro ao editar produto via API JSONServer.');
                     });
 
@@ -173,7 +179,7 @@ function deleteProduct() {
                 window.location.reload();
             })
             .catch(error => {
-                document.getElementById('excluirEventoBotao').innerHTML = "Excluir produto";
+                excluirEventoBotao.innerHTML = "Excluir produto";
                 alert('Erro ao excluir produto via API JSONServer');
             });
     } else alert("Produto não encontrado.")

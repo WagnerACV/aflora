@@ -1,13 +1,20 @@
-const postsContent = document.getElementById('posts-content');
-
+var postsContent = document.getElementById('posts-content');
 postsContent.style.display = "none";
-document.getElementById('loadSpinner').style.display = "flex";
+
+var loadSpinner = document.getElementById('loadSpinner');
+loadSpinner.style.display = "flex";
+
+var mainPostType = document.getElementById('main-post-type');
+var mainPostTitle = document.getElementById('main-post-title');
+var mainPostDescription = document.getElementById('main-post-description');
+var mainPostShare = document.getElementById('main-post-share');
+var mainPostImageContainer = document.getElementById('main-post-image-container');
 
 fetch("/posts")
     .then(function (response) { return response.json() })
     .then(function (data) {
         postsContent.style.display = "flex";
-        document.getElementById('loadSpinner').style.display = "none";
+        loadSpinner.style.display = "none";
 
         if(data?.length) {
             let mainPost;
@@ -31,17 +38,17 @@ fetch("/posts")
             });
 
             if (!mainPost?.id) mainPost = data[0];
-            document.getElementById('main-post-type').innerHTML = mainPost.title;
-            document.getElementById('main-post-title').innerHTML = mainPost.title;
-            document.getElementById('main-post-description').innerHTML = mainPost.author + " - " + mainPost.creationDate;
+            mainPostType.innerHTML = mainPost.title;
+            mainPostTitle.innerHTML = mainPost.title;
+            mainPostDescription.innerHTML = mainPost.author + " - " + mainPost.creationDate;
 
-            document.getElementById('main-post-share').innerHTML = `
+            mainPostShare.innerHTML = `
                 <a href="https://www.facebook.com/sharer/sharer.php?u=${window.location.href}"><img src="../assets/images/facebook-icon.svg" alt="Facebook"></a>
                 <a href="https://twitter.com/intent/tweet?url=${window.location.href}""><img src="../assets/images/x-icon.svg" alt="X"></a>
                 <a href="https://wa.me/?text=Confira%20este%20site%20incr%C3%ADvel!%20${window.location.href}""><img src="../assets/images/whatsapp-icon.png" alt="X"></a>
             `;
 
-            document.getElementById('main-post-image-container').innerHTML = `
+            mainPostImageContainer.innerHTML = `
                 <a href="/pages/post.html?id=${mainPost.id}"> <img id="main-post-image" src="${mainPost.images[0]}" alt="Foto do post principal"> </a>
             `;
 
@@ -50,7 +57,8 @@ fetch("/posts")
         }
     })
     .catch(error => {
-        document.getElementById('events-list-title').style.display = "flex";
-        document.getElementById('loadSpinner').style.display = "none";
+        postsContent.style.display = "flex";
+        loadSpinner.style.display = "none";
+
         alert('Erro ao ler eventos via API JSONServer');
     });

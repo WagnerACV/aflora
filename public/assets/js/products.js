@@ -1,13 +1,16 @@
-const productsContent = document.getElementById('products-content');
-
+var productsContent = document.getElementById('products-content');
 productsContent.style.display = "none";
-document.getElementById('loadSpinner').style.display = "flex";
+
+var loadSpinner = document.getElementById('loadSpinner');
+loadSpinner.style.display = "flex";
+
+var eventsListTitle = document.getElementById('events-list-title');
 
 fetch("/products")
     .then(function (response) { return response.json() })
     .then(function (data) {
         productsContent.style.display = "flex";
-        document.getElementById('loadSpinner').style.display = "none";
+        loadSpinner.style.display = "none";
 
         if(data?.length) {
             data.forEach(product => {
@@ -29,7 +32,8 @@ fetch("/products")
         }
     })
     .catch(error => {
-        document.getElementById('events-list-title').style.display = "flex";
-        document.getElementById('loadSpinner').style.display = "none";
+        eventsListTitle.style.display = "flex";
+        loadSpinner.style.display = "none";
+        
         alert('Erro ao ler eventos via API JSONServer');
     });

@@ -73,7 +73,9 @@ header {
             width: 32px;
             height: 32px;
 
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             cursor: pointer;
 

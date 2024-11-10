@@ -7,6 +7,8 @@ if (personData && JSON.parse(personData).id) {
     window.location = "/";
 }
 
+var updateButton = document.getElementById('updateButton');
+
 if (personData.photo) {
     const profilePhotoContainer = document.getElementById('user-photo');
 
@@ -59,7 +61,7 @@ function updateProfile() {
         });
 
         if (!hasError) {
-            document.getElementById('updateButton').innerHTML = `
+            updateButton.innerHTML = `
                 <div class="spinner-border text-light" role="status" style="margin-top: 4px;">
                     <span class="sr-only">Loading...</span>
                 </div>
@@ -76,7 +78,6 @@ function updateProfile() {
             })
                 .then(function (response) { return response.json() })
                 .then(function (data) {
-                    delete data.subscribedNewsletter;
                     delete data.password;
 
                     localStorage.setItem("user", JSON.stringify(data));
@@ -84,7 +85,7 @@ function updateProfile() {
                     window.location.reload();
                 })
                 .catch(error => {
-                    document.getElementById('updateButton').innerHTML = "Editar";
+                    updateButton.innerHTML = "Editar";
                     alert('Erro ao editar perfil via API JSONServer.');
                 });
         }

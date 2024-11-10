@@ -2,6 +2,25 @@ section {
     padding: 32px;
 }
 
+a {
+    text-decoration: none;
+}
+
+.cta-button1 {
+    padding: 12px 24px;
+    background: #FDC47F;
+    color: black;
+    border: 1px solid black;
+    margin-right: 8px;
+}
+
+.cta-button22 {
+    padding: 12px 24px;
+    background: #FFEEDC;
+    color: black;
+    border: 1px solid black;
+}
+
 .s1 {
     background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../images/home-wallpaper.png");
 
@@ -97,21 +116,6 @@ section {
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-between;
-
-    .s4-button1 {
-        padding: 12px 24px;
-        background: #FDC47F;
-        color: black;
-        border: 1px solid black;
-        margin-right: 8px;
-    }
-
-    .s4-button2 {
-        padding: 12px 24px;
-        background: transparent;
-        color: black;
-        border: 1px solid black;
-    }
 }
 
 .s5 {
