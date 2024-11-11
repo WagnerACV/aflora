@@ -15,6 +15,11 @@ body {
 
     .posts-head {
         text-align: center;
+        padding: 32px;
+
+        @media (max-width: 800px) {
+            padding: 16px;
+        }
     
         h1 {
             font-size: 48px;
@@ -36,6 +41,7 @@ body {
         gap: 128px;
     
         @media (max-width: 800px) {
+            padding: 16px;
             gap: 32px;
         }
     

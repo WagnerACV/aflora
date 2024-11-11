@@ -69,7 +69,11 @@ function signIn() {
         }
 
         if (!hasError) {
-            signInButton.innerHTML = `<div class="loader"></div>`;
+            signInButton.innerHTML = `
+                <div class="spinner-border text-light" role="status" style="margin-top: 4px;">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            `;
 
             fetch("/users")
                 .then(function (response) { return response.json() })
@@ -80,7 +84,7 @@ function signIn() {
                         delete loggedUser.password;
 
                         localStorage.setItem("user", JSON.stringify(loggedUser));
-                        
+
                         window.location.reload();
                     } else {
                         signInButton.innerHTML = "Entrar";
@@ -106,7 +110,7 @@ function signUp() {
         formValue.every(field => {
             if (field.value === '') {
                 let fieldNamePtBr = "";
-                switch(field.name) {
+                switch (field.name) {
                     case 'name': fieldNamePtBr = "Nome completo"; break;
                     case 'email': fieldNamePtBr = "E-mail"; break;
                     case 'phone': fieldNamePtBr = "Telefone"; break;
@@ -127,7 +131,7 @@ function signUp() {
                 alert("Favor inserir um telefone no modelo (99) 99999-9999");
                 hasError = true;
                 return false;
-            } 
+            }
 
             userData[field.name] = field.value;
 
@@ -140,7 +144,11 @@ function signUp() {
         }
 
         if (!hasError && userData) {
-            signInButton.innerHTML = `<div class="loader"></div>`;
+            signInButton.innerHTML = `
+                <div class="spinner-border text-light" role="status" style="margin-top: 4px;">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            `;;
 
             fetch("/users?email=" + userData.email)
                 .then(function (response) { return response.json() })

@@ -1,17 +1,11 @@
 header {
     background-color: #FFEEDC;
-    padding: 8px;
+    padding: 8px 12px;
     min-height: 64px;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    @media (max-width: 500px) {
-        gap: 4px;
-        justify-content: center;
-        padding: 4px;
-    }
 
     h3 {
         background-color: #C7561A;
@@ -19,7 +13,7 @@ header {
         border-radius: 4px;
         padding: 4px 8px;
         cursor: pointer;
-        margin: 0 0 0 24px;
+        margin: 0;
 
         a {
             text-decoration: none;
@@ -28,14 +22,30 @@ header {
 
         @media (max-width: 500px) {
             font-size: 16px;
-            margin: 0;
+        }
+    }
+
+    .large-screen-header {
+        display: flex;
+        @media (max-width: 499px) {
+            display: none;
+        }
+    }
+
+    .header-left-content {
+        display: flex;
+        gap: 16px;
+
+        .small-screen-header {
+            @media (min-width: 500px) {
+                display: none;
+            }
         }
     }
 
     .header-right-content {
         display: flex;
         align-items: center;
-        margin-right: 24px;
 
         @media (max-width: 500px) {
             margin: 0;
@@ -51,7 +61,7 @@ header {
 
             @media (max-width: 500px) { 
                 font-size: 16px;
-                margin: 0 4px 0 0;
+                margin: 0 16px 0 0;
             }
         }
 
@@ -59,7 +69,7 @@ header {
             margin: 0 24px 0 0;
 
             @media (max-width: 500px) { 
-                margin: 0 4px 0 0;
+                margin: 0 16px 0 0;
             }
         }
 
@@ -100,6 +110,10 @@ header {
 footer {
     background-color: #FFEEDC;
     padding: 32px;
+
+    @media (max-width: 800px) {
+        padding: 16px;
+    }
 
     .footer-container {
         display: flex;

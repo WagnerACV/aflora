@@ -33,7 +33,7 @@ fetch("/products/" + productId)
                 `;
             });
             
-            saleLink.href = `https://wa.me/5531999999999?text=Confira%20este%20site%20incr%C3%ADvel!%20${window.location.href}`;
+            saleLink.href = `https://wa.me/5531998331936?text=Tenho%20interesse%20neste%20produto:%20${window.location.href}`;
         } else {
             alert("Produto não encontrado.");
             window.location = "/pages/products.html";

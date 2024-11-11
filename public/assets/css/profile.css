@@ -28,6 +28,10 @@ body {
         gap: 32px;
         margin: 24px 0 64px;
 
+        @media (max-width: 500px) {
+            margin: 24px 0;
+        }
+
         h1 {
             width: 100%;
             text-align: center;

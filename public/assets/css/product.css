@@ -27,6 +27,7 @@ body {
     gap: 128px;
 
     @media (max-width: 800px) {
+        padding: 16px;
         gap: 32px;
     }
 

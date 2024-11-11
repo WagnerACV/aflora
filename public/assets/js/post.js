@@ -10,7 +10,6 @@ var loadSpinner = document.getElementById('loadSpinner');
 loadSpinner.style.display = "flex";
 
 var subscriptionContainer = document.getElementById('subscription-container');
-var subscribeButton = document.getElementById('subscribe-button');
 var postType = document.getElementById('post-type');
 var postTitle = document.getElementById('post-title');
 var postDescription = document.getElementById('post-description');
@@ -19,6 +18,8 @@ var postAuthor = document.getElementById('post-author');
 var postShare = document.getElementById('post-share');
 var postContent = document.getElementById('content');
 var updateButton = document.getElementById('updateButton');
+
+var subscribeButton;
 
 fetch("/posts/" + postId)
     .then(function (response) { return response.json() })
@@ -44,14 +45,18 @@ fetch("/posts/" + postId)
             if(personData?.id) {
                 if (personData.subscribedNewsletter) subscriptionContainer.innerHTML = "Já inscrito(a) na newsletter";
                 else subscriptionContainer.innerHTML = `<button id="subscribe-button" onclick="subscribe()">Inscrever na newsletter</button>`;
+
+                subscribeButton = document.getElementById('subscribe-button');
             } else {
                 subscriptionContainer.innerHTML = `<button id="subscribe-button" data-bs-target="#loginModal" data-bs-toggle="modal">Inscrever na newsletter</button>`;
+
+                subscribeButton = document.getElementById('subscribe-button');
             }
 
             postShare.innerHTML = `
                 <a href="https://www.facebook.com/sharer/sharer.php?u=${window.location.href}"><img src="../assets/images/facebook-icon.svg" alt="Facebook"></a>
-                <a href="https://twitter.com/intent/tweet?url=${window.location.href}""><img src="../assets/images/x-icon.svg" alt="X"></a>
-                <a href="https://wa.me/?text=Confira%20este%20site%20incr%C3%ADvel!%20${window.location.href}""><img src="../assets/images/whatsapp-icon.png" alt="X"></a>
+                <a href="https://twitter.com/intent/tweet?text=Confira%20este%20produto%20incr%C3%ADvel!%20${window.location.href}"><img src="../assets/images/x-icon.svg" alt="X"></a>
+                <a href="https://wa.me/?text=Confira%20este%20produto%20incr%C3%ADvel!%20${window.location.href}""><img src="../assets/images/whatsapp-icon.png" alt="X"></a>
             `;
 
             postContent.innerHTML = data.postText;

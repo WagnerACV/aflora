@@ -10,7 +10,12 @@ body {
 }
 
 .products-container {
+    padding: 32px;
     margin: 0;
+
+    @media (max-width: 500px) {
+        padding: 16px;
+    }
 
     .products-head {
         text-align: center;

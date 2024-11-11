@@ -14,7 +14,7 @@ var productNameInput = document.getElementById('productNameInput');
 var productDescriptionInput = document.getElementById('productDescriptionInput');
 var productPriceInput = document.getElementById('productPriceInput');
 var productImageInput = document.getElementById('productImageInput');
-var excluirEventoBotao = document.getElementById('excluirEventoBotao');
+var deleteProductButton = document.getElementById('deleteProductButton');
 
 if (personData && JSON.parse(personData).userType === "admin") {
     personData = JSON.parse(personData);
@@ -51,7 +51,7 @@ function loadProducts() {
                                     Editar
                                 </button>
 
-                                <button class="delete-button" onclick="${selectedProductID = product.id})" data-bs-target="#deleteProductModal" data-bs-toggle="modal">
+                                <button class="delete-button" onclick="openDeletePostModal('${product.id}')" data-bs-target="#deleteProductModal" data-bs-toggle="modal">
                                     <i class="fa fa-trash" style="color: white;"></i>
                                 </button>
                             </div>
@@ -171,15 +171,25 @@ function createOrUpdateProduct() {
     }
 }
 
+function openDeletePostModal(id) {
+    selectedProductID = id;
+}
+
 function deleteProduct() {
     if (selectedProductID) {
+        deleteProductButton.innerHTML = `
+            <div class="spinner-border text-light" role="status" style="margin-top: 4px;">
+                <span class="sr-only">Loading...</span>
+            </div>
+        `;
+
         fetch("/products/" + selectedProductID, { method: 'DELETE' })
             .then(function (response) { return response.json() })
             .then(function (data) {
                 window.location.reload();
             })
             .catch(error => {
-                excluirEventoBotao.innerHTML = "Excluir produto";
+                deleteProductButton.innerHTML = "Excluir produto";
                 alert('Erro ao excluir produto via API JSONServer');
             });
     } else alert("Produto não encontrado.")

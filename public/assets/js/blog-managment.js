@@ -15,7 +15,7 @@ var postTextInput = document.getElementById('postTextInput');
 var postImageInput = document.getElementById('postImageInput');
 var isMainPostEl = document.getElementById('isMainPost');
 var isNotMainPostEl = document.getElementById('isNotMainPost');
-var deleteButton = document.getElementById('excluirEventoBotao');
+var deleteButton = document.getElementById('deleteButton');
 var createUpdatepostButton = document.getElementById('createUpdatepostButton');
 
 if (personData && JSON.parse(personData).userType === "admin") {
@@ -54,7 +54,7 @@ function loadPosts() {
                                     Editar
                                 </button>
 
-                                <button class="delete-button" onclick="${selectedPostID = post.id})" data-bs-target="#deletePostModal" data-bs-toggle="modal">
+                                <button class="delete-button" onclick="openDeletePostModal('${post.id}')" data-bs-target="#deletePostModal" data-bs-toggle="modal">
                                     <i class="fa fa-trash" style="color: white;"></i>
                                 </button>
                             </div>
@@ -96,6 +96,10 @@ function openEditPostModal(id) {
 
     if (postToEdit.isMainPost) isMainPostEl.checked = true;
     else isNotMainPostEl.checked = true;
+}
+
+function openDeletePostModal(id) {
+    selectedPostID = id;
 }
 
 function createOrUpdatePost() {
@@ -233,6 +237,12 @@ function createOrUpdatePost() {
 
 function deletePost() {
     if (selectedPostID) {
+        deleteButton.innerHTML = `
+                <div class="spinner-border text-light" role="status" style="margin-top: 4px;">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            `;
+
         fetch("/posts/" + selectedPostID, { method: 'DELETE' })
             .then(function (response) { return response.json() })
             .then(function (data) {
