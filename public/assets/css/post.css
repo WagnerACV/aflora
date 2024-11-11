@@ -10,7 +10,7 @@ body {
     justify-content: space-between;
 }
 
-#post-container {
+#post-content {
     padding: 32px;
     display: flex;
     justify-content: center;

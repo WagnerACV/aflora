@@ -3,12 +3,11 @@ if (!window.location.search || !window.location.search.includes("id=")) window.l
 var personData = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
 var postId = window.location.search.replaceAll("?id=", "");
 
-var postHeader = document.getElementById('post-header');
-postHeader.style.display = "none";
-
 var loadSpinner = document.getElementById('loadSpinner');
 loadSpinner.style.display = "flex";
 
+var postContainer = document.getElementById('post-container');
+var postHeader = document.getElementById('post-header');
 var subscriptionContainer = document.getElementById('subscription-container');
 var postType = document.getElementById('post-type');
 var postTitle = document.getElementById('post-title');
@@ -25,7 +24,7 @@ fetch("/posts/" + postId)
     .then(function (response) { return response.json() })
     .then(function (data) {
         if (data && data.id) {
-            postHeader.style.display = "flex";
+            postContainer.style.display = "block";
             loadSpinner.style.display = "none";
 
             postType.innerHTML = data.title;
@@ -66,7 +65,7 @@ fetch("/posts/" + postId)
         }
     })
     .catch(error => {
-        postHeader.style.display = "flex";
+        postContainer.style.display = "block";
         loadSpinner.style.display = "none";
 
         alert(error);

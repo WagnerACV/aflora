@@ -1,9 +1,9 @@
-var postsContent = document.getElementById('posts-content');
-postsContent.style.display = "none";
+var postsContainer = document.getElementById('postsContainer');
 
 var loadSpinner = document.getElementById('loadSpinner');
 loadSpinner.style.display = "flex";
 
+var postsContent = document.getElementById('posts-content');
 var mainPostType = document.getElementById('main-post-type');
 var mainPostTitle = document.getElementById('main-post-title');
 var mainPostDescription = document.getElementById('main-post-description');
@@ -13,7 +13,7 @@ var mainPostImageContainer = document.getElementById('main-post-image-container'
 fetch("/posts")
     .then(function (response) { return response.json() })
     .then(function (data) {
-        postsContent.style.display = "flex";
+        postsContainer.style.display = "block";
         loadSpinner.style.display = "none";
 
         if(data?.length) {
@@ -57,7 +57,7 @@ fetch("/posts")
         }
     })
     .catch(error => {
-        postsContent.style.display = "flex";
+        postsContainer.style.display = "block";
         loadSpinner.style.display = "none";
 
         alert('Erro ao ler eventos via API JSONServer');

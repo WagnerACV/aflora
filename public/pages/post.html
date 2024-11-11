@@ -26,14 +26,14 @@
             aria-expanded="false">
             <i class="fa fa-bars"></i>
           </a>
-  
+
           <ul class="dropdown-menu">
             <li> <a class="dropdown-item" href="/pages/products.html">Produtos</a> </li>
             <li> <a class="dropdown-item" href="/pages/blog.html">Blog</a> </li>
           </ul>
         </div>
       </div>
-  
+
       <h3><a href="/">Aflorá</a></h3>
     </div>
 
@@ -45,44 +45,45 @@
     </div>
   </header>
 
-  <div id="post-header">
-    <div id="loadSpinner" style="height: 100%; display: none; justify-content: center; align-items: center;">
-      <div class="spinner-border text-dark" role="status" style="margin-top: 4px;">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
-
-    <div class="division">
-      <div class="description">
-        <a href="/pages/blog.html">
-          <div>
-            <i class="fa fa-arrow-left"></i>
-            <span>Ver tudo</span>
-          </div>
-        </a>
-
-        <h3 id="post-type"></h3>
-        <h1 id="post-title"></h1>
-        <h3 id="post-description"></h3>
-      </div>
-      <div class="image">
-        <div id="imagesCarousel" class="carousel carousel-fade" data-bs-ride="false">
-          <div class="carousel-inner" id="carousel-post-images"></div>
-
-          <button class="carousel-control-prev" type="button" data-bs-target="#imagesCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#imagesCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-      </div>
+  <div id="loadSpinner" style="height: 100%; display: none; justify-content: center; align-items: center;">
+    <div class="spinner-border text-dark" role="status" style="margin-top: 4px;">
+      <span class="sr-only">Loading...</span>
     </div>
   </div>
 
-  <div id="post-container">
+  <div id="post-container" style="display: none;">
+    <div id="post-header">
+      <div class="division">
+        <div class="description">
+          <a href="/pages/blog.html">
+            <div>
+              <i class="fa fa-arrow-left"></i>
+              <span>Ver tudo</span>
+            </div>
+          </a>
+
+          <h3 id="post-type"></h3>
+          <h1 id="post-title"></h1>
+          <h3 id="post-description"></h3>
+        </div>
+        <div class="image">
+          <div id="imagesCarousel" class="carousel carousel-fade" data-bs-ride="false">
+            <div class="carousel-inner" id="carousel-post-images"></div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#imagesCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#imagesCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="post-content">
       <div id="content"></div>
 
       <div class="share">
@@ -102,6 +103,7 @@
         <h4>Compartilhe com os outros!</h4>
         <div id="post-share"></div>
       </div>
+    </div>
   </div>
 
   <footer>
@@ -112,9 +114,11 @@
 
       <div class="footer-info">
         <div class="footer-social-network">
-          <a href="https://www.instagram.com/afloravasos"><img src="../assets/images/instagram-icon.svg" alt="Instagram"></a>
+          <a href="https://www.instagram.com/afloravasos"><img src="../assets/images/instagram-icon.svg"
+              alt="Instagram"></a>
           <a href="https://wa.me/5531998331936"><img src="../assets/images/whatsapp-icon.png" alt="whatsapp"></a>
-          <a href="https://www.facebook.com/afloravasos"><img src="../assets/images/facebook-icon.svg" alt="Facebook"></a>
+          <a href="https://www.facebook.com/afloravasos"><img src="../assets/images/facebook-icon.svg"
+              alt="Facebook"></a>
           <a href="https://www.twiiter.com/afloravasos"><img src="../assets/images/x-icon.svg" alt="X"></a>
         </div>
 
@@ -202,7 +206,8 @@
             <input class="w-100" name="email" type="text">
 
             <label for="phone" class="m-0">Telefone *</label>
-            <input class="w-100" name="phone" type="text" placeholder="(99) 99999-9999" maxlength="15" oninput="phoneMask(event)">
+            <input class="w-100" name="phone" type="text" placeholder="(99) 99999-9999" maxlength="15"
+              oninput="phoneMask(event)">
 
             <label for="password" class="m-0">Senha *</label>
             <input class="w-100" name="password" type="password">

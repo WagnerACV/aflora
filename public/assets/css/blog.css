@@ -10,7 +10,7 @@ body {
     justify-content: space-between;
 }
 
-.posts-container {
+#postsContainer {
     margin: 0;
 
     .posts-head {
