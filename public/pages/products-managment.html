@@ -142,7 +142,7 @@
             <textarea class="w-100" id="productDescriptionInput" name="description"></textarea>
 
             <label for="image" id="imageLabel">Imagem do produto *</label>
-            <input class="w-100" id="productImageInput" name="image" type="file" onchange="readFile(this)">
+            <input class="w-100" id="productImageInput" name="images[]" type="file" accept="image/*" multiple onchange="readFile(this)">
           </form>
         </div>
         <div class="modal-footer border-0">

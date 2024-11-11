@@ -2,7 +2,7 @@ var personData = localStorage.getItem("user");
 
 var posts;
 var selectedPostID;
-var postImageBase64;
+var postImagesBase64;
 
 var postsList = document.getElementById('posts-list');
 var loadSpinner = document.getElementById('loadSpinner');
@@ -105,7 +105,7 @@ function createOrUpdatePost() {
             return true;
         });
 
-        if ((!editPost || !editPost.images || !editPost.images.length) && !postImageBase64) {
+        if ((!editPost || !editPost.images || !editPost.images.length) && !postImagesBase64?.length) {
             alert("A imagem do post é obrigatória.");
             hasError = true;
         }
@@ -132,7 +132,7 @@ function createOrUpdatePost() {
             // Atualiza post
             if (editPost && editPost.id) {
                 postData.id = editPost.id;
-                postData.images = postImageBase64 ? [postImageBase64] : editPost.images;
+                postData.images = postImagesBase64?.length ? postImagesBase64 : editPost.images;
                 postData.creationDate = editPost.creationDate;
                 postData.author = editPost.author;
 
@@ -172,7 +172,7 @@ function createOrUpdatePost() {
 
             } else {
                 postData.id = generateUUID();
-                postData.images = [postImageBase64];
+                postData.images = postImagesBase64;
                 postData.creationDate = new Date().toLocaleDateString();
                 postData.author = personData.name;
 
@@ -235,14 +235,23 @@ function deletePost() {
 }
 
 function readFile(el) {
-    if (!el.files || !el.files[0]) return;
+    if (!el?.files?.length) return;
 
-    const FR = new FileReader();
-    FR.addEventListener("load", function (evt) {
-        postImageBase64 = evt.target.result;
+    postImagesBase64 = [];
+
+    const files = el?.files;
+
+    // Função para converter cada arquivo
+    Array.from(files).forEach(file => {
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+            const base64String = event.target.result;
+            postImagesBase64.push(base64String);
+        };
+
+        reader.readAsDataURL(file);
     });
-
-    FR.readAsDataURL(el.files[0]);
 }
 
 function searchPosts() {

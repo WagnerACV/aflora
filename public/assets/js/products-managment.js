@@ -2,7 +2,7 @@ var personData = localStorage.getItem("user");
 
 var products;
 var selectedProductID;
-var productImageBase64;
+var productImagesBase64 = [];
 
 var productsContainer = document.getElementById('products-container');
 var loadSpinner = document.getElementById('loadSpinner');
@@ -97,7 +97,7 @@ function createOrUpdateProduct() {
             return true;
         });
 
-        if ((!editProduct || !editProduct.images || !editProduct.images.length) && !productImageBase64) {
+        if ((!editProduct || !editProduct.images || !editProduct.images.length) && !productImagesBase64?.length) {
             alert("A imagem do produto é obrigatória.");
             hasError = true;
         }
@@ -112,7 +112,7 @@ function createOrUpdateProduct() {
             // Atualiza produto
             if (editProduct && editProduct.id) {
                 productData.id = editProduct.id;
-                productData.images = productImageBase64 ? [productImageBase64] : editProduct.images;
+                productData.images = productImagesBase64?.length ? productImagesBase64 : editProduct.images;
 
                 fetch("/products/" + productData.id, {
                     method: 'PUT',
@@ -132,7 +132,7 @@ function createOrUpdateProduct() {
 
             } else {
                 productData.id = generateUUID();
-                productData.images = [productImageBase64];
+                productData.images = productImagesBase64;
 
                 // Cria novo produto
                 fetch("/products", {
@@ -179,30 +179,39 @@ function deleteProduct() {
 }
 
 function readFile(el) {
-    if (!el.files || !el.files[0]) return;
+    if (!el?.files?.length) return;
 
-    const FR = new FileReader();
-    FR.addEventListener("load", function (evt) {
-        productImageBase64 = evt.target.result;
+    productImagesBase64 = [];
+
+    const files = el?.files;
+
+    // Função para converter cada arquivo
+    Array.from(files).forEach(file => {
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+            const base64String = event.target.result;
+            productImagesBase64.push(base64String);
+        };
+
+        reader.readAsDataURL(file);
     });
-
-    FR.readAsDataURL(el.files[0]);
 }
 
 function searchProducts() {
     const searchText = searchInput.value;
 
-    if(searchText?.length) {
+    if (searchText?.length) {
         deleteSeachButton.style.display = "block";
 
         let filteredProducts = products.filter(product => {
-            if(product.name.indexOf(searchText) !== -1) return true;
+            if (product.name.indexOf(searchText) !== -1) return true;
 
-            if(product.price.indexOf(searchText) !== -1) return true;
+            if (product.price.indexOf(searchText) !== -1) return true;
 
-            if(product.description.indexOf(searchText) !== -1) return true;
+            if (product.description.indexOf(searchText) !== -1) return true;
         });
-        
+
         renderProducts(filteredProducts);
     } else {
         deleteSeachButton.style.display = "none";
