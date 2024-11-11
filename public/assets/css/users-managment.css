@@ -53,29 +53,6 @@ body {
             }
         }
     }
-
-    .serach-container {
-        display: flex;
-        justify-content: flex-end;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 32px;
-
-        @media (max-width: 500px) {
-            gap: 16px;
-        }
-
-        input {
-            width: 200px;
-        }
-
-        button {
-            background-color: transparent;
-            border: 1px solid black;
-            font-size: 16px;   
-            padding: 8px 16px;
-        }
-    }
 }
 
 h6 {

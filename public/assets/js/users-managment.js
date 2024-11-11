@@ -4,7 +4,7 @@ var users;
 var usersList = document.getElementById('users-list');
 var loadSpinner = document.getElementById('loadSpinner');
 var searchInput = document.getElementById('searchInput');
-var deleteButton = document.getElementById('deleteSeachButton');
+var deleteSeachButton = document.getElementById('deleteSeachButton');
 
 if (personData && JSON.parse(personData).userType === "admin") {
     personData = JSON.parse(personData);
@@ -39,7 +39,7 @@ function searchUser() {
     const searchText = searchInput.value;
 
     if(searchText?.length) {
-        deleteButton.style.display = "block";
+        deleteSeachButton.style.display = "block";
 
         let filteredUsers = users.filter(user => {
             if(user.userType === "admin") return false;
@@ -53,7 +53,7 @@ function searchUser() {
         
         renderUsers(filteredUsers);
     } else {
-        deleteButton.style.display = "none";
+        deleteSeachButton.style.display = "none";
         renderUsers(users);
     }
 }
@@ -82,7 +82,7 @@ function renderUsers(usersToRender) {
 }
 
 function deleteSearch() {
-    deleteButton.style.display = "none";
+    deleteSeachButton.style.display = "none";
     searchInput.value = null;
 
     renderUsers(users);

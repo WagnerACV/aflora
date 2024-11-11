@@ -64,11 +64,7 @@ body {
     
         h6 {
             font-size: 20px;
-            margin: 0 0 64px;
-
-            @media (max-width: 500px) {
-                margin: 0 0 32px;
-            }
+            margin: 0 0 16px;
         }
     }
 
@@ -82,6 +78,10 @@ body {
         gap: 16px;
 
         padding: 32px;
+
+        @media (max-width: 500px) {
+            padding: 16px;
+        }
 
         .post {
             display: flex;

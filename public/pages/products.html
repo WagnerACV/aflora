@@ -56,6 +56,12 @@
             <h5>Explore nossa requintada coleção de vasos decorativos.</h5>
         </div>
 
+        <div class="search-container">
+          <input id="searchInput" type="text">
+          <button onclick="searchProducts()">Pesquisar</button>
+          <button style="display: none;" id="deleteSeachButton" onclick="deleteSearch()">Limpar</button>
+        </div>
+
         <div id="loadSpinner" style="height: 100%; display: none; justify-content: center; align-items: center;">
             <div class="spinner-border text-dark" role="status" style="margin-top: 4px;">
                 <span class="sr-only">Loading...</span>

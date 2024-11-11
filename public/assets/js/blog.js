@@ -1,3 +1,6 @@
+var posts;
+var mainPost;
+
 var postsContainer = document.getElementById('postsContainer');
 
 var loadSpinner = document.getElementById('loadSpinner');
@@ -13,31 +16,15 @@ var mainPostImageContainer = document.getElementById('main-post-image-container'
 fetch("/posts")
     .then(function (response) { return response.json() })
     .then(function (data) {
+        posts = data;
+
         postsContainer.style.display = "block";
         loadSpinner.style.display = "none";
 
-        if(data?.length) {
-            let mainPost;
-
-            data.forEach(post => {
-                if(post.isMainPost) mainPost = post;
-
-                postsContent.innerHTML += `
-                    <a href="/pages/post.html?id=${post.id}">
-                        <div class="post">
-                            <div class="image-container" style="background-image: url('${post.images[0]}');"></div>
-
-                            <div>
-                                <h5>${post.type}</h5>
-                                <h4>${post.title}</h4>
-                                <h6>${post.author} - ${post.creationDate}</h6>
-                            </div>
-                        </div>
-                    </a>
-                `;
-            });
-
+        if (posts?.length) {
+            mainPost = posts.find(post => post.isMainPost);
             if (!mainPost?.id) mainPost = data[0];
+
             mainPostType.innerHTML = mainPost.title;
             mainPostTitle.innerHTML = mainPost.title;
             mainPostDescription.innerHTML = mainPost.author + " - " + mainPost.creationDate;
@@ -51,10 +38,9 @@ fetch("/posts")
             mainPostImageContainer.innerHTML = `
                 <a href="/pages/post.html?id=${mainPost.id}"> <img id="main-post-image" src="${mainPost.images[0]}" alt="Foto do post principal"> </a>
             `;
-
-        } else {
-            postsContent.innerHTML = '<h3 class="text-center">Por enquanto não temos produtos cadastrados.</h3>'
         }
+
+        renderPosts(posts);
     })
     .catch(error => {
         postsContainer.style.display = "block";
@@ -62,3 +48,61 @@ fetch("/posts")
 
         alert('Erro ao ler eventos via API JSONServer');
     });
+
+function searchPosts() {
+    const searchText = searchInput.value;
+
+    if (searchText?.length) {
+        deleteSeachButton.style.display = "block";
+
+        let filteredPosts = posts.filter(post => {
+            if (post.title.indexOf(searchText) !== -1) return true;
+
+            if (post.type.indexOf(searchText) !== -1) return true;
+
+            if (post.postText.indexOf(searchText) !== -1) return true;
+
+            if (post.creationDate.indexOf(searchText) !== -1) return true;
+        });
+
+        renderPosts(filteredPosts);
+    } else {
+        deleteSeachButton.style.display = "none";
+        renderPosts(posts);
+    }
+}
+
+function renderPosts(postsToRender) {
+    console.log(postsToRender)
+    if (!postsToRender?.length || posts.length === 1) {
+        postsContent.innerHTML = '<h3 class="text-center">Nenhum post encontrado :(</h3>';
+        return;
+    }
+
+    postsToRender = postsToRender.filter(post => post.id !== mainPost.id);
+
+    postsContent.innerHTML = null;
+
+    postsToRender.forEach(post => {
+        postsContent.innerHTML += `
+                <a href="/pages/post.html?id=${post.id}">
+                    <div class="post">
+                        <div class="image-container" style="background-image: url('${post.images[0]}');"></div>
+
+                        <div>
+                            <h5>${post.type}</h5>
+                            <h4>${post.title}</h4>
+                            <h6>${post.author} - ${post.creationDate}</h6>
+                        </div>
+                    </div>
+                </a>
+            `;
+    });
+}
+
+function deleteSearch() {
+    deleteSeachButton.style.display = "none";
+    searchInput.value = null;
+
+    renderPosts(posts);
+}

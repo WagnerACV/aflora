@@ -16,6 +16,9 @@ var productPriceInput = document.getElementById('productPriceInput');
 var productImageInput = document.getElementById('productImageInput');
 var deleteProductButton = document.getElementById('deleteProductButton');
 
+var searchInput = document.getElementById('searchInput');
+var deleteSeachButton = document.getElementById('deleteSeachButton');
+
 if (personData && JSON.parse(personData).userType === "admin") {
     personData = JSON.parse(personData);
 
@@ -38,27 +41,7 @@ function loadProducts() {
 
             productsListTitle.innerHTML = `Produtos (${products.length})`;
 
-            products.forEach(product => {
-                productsList.innerHTML += `
-                    <div class="product">
-                        <a href="/pages/product.html?id=${product.id}" style="background-image: url('${product.images[0]}');"> </a>
-
-                        <div>
-                            <h5>${product.name}</h5>
-                            <h4>R$ ${product.price}</h4>
-                            <div class="buttonsContainer">
-                                <button class="edit-button" onclick="openEditProductModal('${product.id}')" data-bs-target="#createUpdateProductModal" data-bs-toggle="modal">
-                                    Editar
-                                </button>
-
-                                <button class="delete-button" onclick="openDeletePostModal('${product.id}')" data-bs-target="#deleteProductModal" data-bs-toggle="modal">
-                                    <i class="fa fa-trash" style="color: white;"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
+            renderProducts(products);
         })
         .catch(error => {
             productsContainer.style.display = "block";
@@ -204,4 +187,63 @@ function readFile(el) {
     });
 
     FR.readAsDataURL(el.files[0]);
+}
+
+function searchProducts() {
+    const searchText = searchInput.value;
+
+    if(searchText?.length) {
+        deleteSeachButton.style.display = "block";
+
+        let filteredProducts = products.filter(product => {
+            if(product.name.indexOf(searchText) !== -1) return true;
+
+            if(product.price.indexOf(searchText) !== -1) return true;
+
+            if(product.description.indexOf(searchText) !== -1) return true;
+        });
+        
+        renderProducts(filteredProducts);
+    } else {
+        deleteSeachButton.style.display = "none";
+        renderProducts(products);
+    }
+}
+
+function renderProducts(productsToRender) {
+    if (!productsToRender?.length) {
+        productsList.innerHTML = "Produtos não encontrados.";
+        return;
+    }
+
+    productsList.innerHTML = null;
+
+    productsToRender.forEach(product => {
+        productsList.innerHTML += `
+            <div class="product">
+                <a href="/pages/product.html?id=${product.id}" style="background-image: url('${product.images[0]}');"> </a>
+
+                <div>
+                    <h5>${product.name}</h5>
+                    <h4>R$ ${product.price}</h4>
+                    <div class="buttonsContainer">
+                        <button class="edit-button" onclick="openEditProductModal('${product.id}')" data-bs-target="#createUpdateProductModal" data-bs-toggle="modal">
+                            Editar
+                        </button>
+
+                        <button class="delete-button" onclick="openDeletePostModal('${product.id}')" data-bs-target="#deleteProductModal" data-bs-toggle="modal">
+                            <i class="fa fa-trash" style="color: white;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+}
+
+function deleteSearch() {
+    deleteSeachButton.style.display = "none";
+    searchInput.value = null;
+
+    renderProducts(products);
 }

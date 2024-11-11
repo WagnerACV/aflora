@@ -26,14 +26,14 @@
             aria-expanded="false">
             <i class="fa fa-bars"></i>
           </a>
-  
+
           <ul class="dropdown-menu">
             <li> <a class="dropdown-item" href="/pages/products.html">Produtos</a> </li>
             <li> <a class="dropdown-item" href="/pages/blog.html">Blog</a> </li>
           </ul>
         </div>
       </div>
-  
+
       <h3><a href="/">Aflorá</a></h3>
     </div>
 
@@ -57,9 +57,16 @@
     <div id="products-container">
       <div class="products-list-header">
         <h3 id="products-list-title"></h3>
-        <button id="createButton" data-bs-target="#createUpdateProductModal" data-bs-toggle="modal" onclick="openCreateProductModal()">
+        <button id="createButton" data-bs-target="#createUpdateProductModal" data-bs-toggle="modal"
+          onclick="openCreateProductModal()">
           <i class="fa fa-plus" style="color: #ffffff;"></i>
         </button>
+      </div>
+
+      <div class="search-container">
+        <input id="searchInput" type="text">
+        <button onclick="searchProducts()">Pesquisar</button>
+        <button style="display: none;" id="deleteSeachButton" onclick="deleteSearch()">Limpar</button>
       </div>
 
       <div id="products-list"></div>
@@ -74,9 +81,11 @@
 
       <div class="footer-info">
         <div class="footer-social-network">
-          <a href="https://www.instagram.com/afloravasos"><img src="../assets/images/instagram-icon.svg" alt="Instagram"></a>
+          <a href="https://www.instagram.com/afloravasos"><img src="../assets/images/instagram-icon.svg"
+              alt="Instagram"></a>
           <a href="https://wa.me/5531998331936"><img src="../assets/images/whatsapp-icon.png" alt="whatsapp"></a>
-          <a href="https://www.facebook.com/afloravasos"><img src="../assets/images/facebook-icon.svg" alt="Facebook"></a>
+          <a href="https://www.facebook.com/afloravasos"><img src="../assets/images/facebook-icon.svg"
+              alt="Facebook"></a>
           <a href="https://www.twiiter.com/afloravasos"><img src="../assets/images/x-icon.svg" alt="X"></a>
         </div>
 
@@ -90,7 +99,8 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="selectedProductID = null"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            onclick="selectedProductID = null"></button>
 
           <div class="d-flex flex-column align-items-center login-modal-body">
             <h4 class="text-center">Tem cereteza que deseja excluir este produto?</h4>
@@ -111,12 +121,14 @@
   </div>
 
   <!-- Create/Update product -->
-  <div class="modal fade" id="createUpdateProductModal" aria-hidden="true" aria-labelledby="createUpdateProductLabel" tabindex="-1">
+  <div class="modal fade" id="createUpdateProductModal" aria-hidden="true" aria-labelledby="createUpdateProductLabel"
+    tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header border-0">
           <h1 class="modal-title fs-5" id="createUpdateProductLabel"> </h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="selectedProductID = null"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            onclick="selectedProductID = null"></button>
         </div>
         <div class="modal-body border-0">
           <form id="createUpdateProductForm" onsubmit="return false;">
@@ -137,8 +149,8 @@
           <button class="btn second-login-button" data-bs-dismiss="modal" onclick="selectedProductID = null">
             Voltar
           </button>
-          <button style="background-color: #FFEEDC; border: 1px solid black;" class="btn btn-green" id="createUpdateProductButton"
-            onclick="createOrUpdateProduct()">
+          <button style="background-color: #FFEEDC; border: 1px solid black;" class="btn btn-green"
+            id="createUpdateProductButton" onclick="createOrUpdateProduct()">
             Cadastrar
           </button>
         </div>
@@ -225,7 +237,8 @@
             <input class="w-100" name="email" type="text">
 
             <label for="phone" class="m-0">Telefone *</label>
-            <input class="w-100" name="phone" type="text" placeholder="(99) 99999-9999" maxlength="15" oninput="phoneMask(event)">
+            <input class="w-100" name="phone" type="text" placeholder="(99) 99999-9999" maxlength="15"
+              oninput="phoneMask(event)">
 
             <label for="password" class="m-0">Senha *</label>
             <input class="w-100" name="password" type="password">

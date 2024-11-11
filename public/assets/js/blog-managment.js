@@ -40,28 +40,7 @@ function loadPosts() {
 
             postListTitle.innerHTML = `Posts (${posts.length})`;
 
-            posts.forEach(post => {
-                postsList.innerHTML += `
-                    <div class="post">
-                        <a href="/pages/post.html?id=${post.id}" style="background-image: url('${post.images[0]}');"> </a>
-
-                        <div>
-                            <h5>${post.type}</h5>
-                            <h4>${post.title}</h4>
-                            <h6>${post.author} - ${post.creationDate}</h6>
-                            <div class="buttonsContainer">
-                                <button class="edit-button" onclick="openEditPostModal('${post.id}')" data-bs-target="#createUpdatePostModal" data-bs-toggle="modal">
-                                    Editar
-                                </button>
-
-                                <button class="delete-button" onclick="openDeletePostModal('${post.id}')" data-bs-target="#deletePostModal" data-bs-toggle="modal">
-                                    <i class="fa fa-trash" style="color: white;"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
+            renderPosts(posts);
         })
         .catch(error => {
             postsList.style.display = "flex";
@@ -264,4 +243,67 @@ function readFile(el) {
     });
 
     FR.readAsDataURL(el.files[0]);
+}
+
+function searchPosts() {
+    const searchText = searchInput.value;
+
+    if (searchText?.length) {
+        deleteSeachButton.style.display = "block";
+
+        let filteredPosts = posts.filter(post => {
+            if (post.title.indexOf(searchText) !== -1) return true;
+
+            if (post.type.indexOf(searchText) !== -1) return true;
+
+            if (post.postText.indexOf(searchText) !== -1) return true;
+
+            if (post.creationDate.indexOf(searchText) !== -1) return true;
+        });
+
+        renderPosts(filteredPosts);
+    } else {
+        deleteSeachButton.style.display = "none";
+        renderPosts(posts);
+    }
+}
+
+function renderPosts(postsToRender) {
+    console.log(postsToRender)
+    if (!postsToRender?.length) {
+        postsList.innerHTML = '<h3 class="text-center">Nenhum post encontrado :(</h3>';
+        return;
+    }
+
+    postsList.innerHTML = null;
+
+    postsToRender.forEach(post => {
+        postsList.innerHTML += `
+            <div class="post">
+                <a href="/pages/post.html?id=${post.id}" style="background-image: url('${post.images[0]}');"> </a>
+
+                <div>
+                    <h5>${post.type}</h5>
+                    <h4>${post.title}</h4>
+                    <h6>${post.author} - ${post.creationDate}</h6>
+                    <div class="buttonsContainer">
+                        <button class="edit-button" onclick="openEditPostModal('${post.id}')" data-bs-target="#createUpdatePostModal" data-bs-toggle="modal">
+                            Editar
+                        </button>
+
+                        <button class="delete-button" onclick="openDeletePostModal('${post.id}')" data-bs-target="#deletePostModal" data-bs-toggle="modal">
+                            <i class="fa fa-trash" style="color: white;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+}
+
+function deleteSearch() {
+    deleteSeachButton.style.display = "none";
+    searchInput.value = null;
+
+    renderPosts(posts);
 }
