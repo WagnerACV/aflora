@@ -13,7 +13,7 @@ var mainPostDescription = document.getElementById('main-post-description');
 var mainPostShare = document.getElementById('main-post-share');
 var mainPostImageContainer = document.getElementById('main-post-image-container');
 
-fetch("/posts")
+fetch("/api/posts")
     .then(function (response) { return response.json() })
     .then(function (data) {
         posts = data;
@@ -36,7 +36,7 @@ fetch("/posts")
             `;
 
             mainPostImageContainer.innerHTML = `
-                <a href="/pages/post.html?id=${mainPost.id}"> <img id="main-post-image" src="${mainPost.images[0]}" alt="Foto do post principal"> </a>
+                <a href="/post?id=${mainPost.id}"> <img id="main-post-image" src="${mainPost.images[0]}" alt="Foto do post principal"> </a>
             `;
         }
 
@@ -85,7 +85,7 @@ function renderPosts(postsToRender) {
 
     postsToRender.forEach(post => {
         postsContent.innerHTML += `
-                <a href="/pages/post.html?id=${post.id}">
+                <a href="/post?id=${post.id}">
                     <div class="post">
                         <div class="image-container" style="background-image: url('${post.images[0]}');"></div>
 

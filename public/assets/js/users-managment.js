@@ -18,7 +18,7 @@ function loadUsers() {
     usersList.style.display = "none";
     loadSpinner.style.display = "flex";
 
-    fetch("/users")
+    fetch("/api/users")
         .then(function (response) { return response.json() })
         .then(function (data) {
             users = data;

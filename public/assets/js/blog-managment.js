@@ -30,7 +30,7 @@ function loadPosts() {
     postsList.style.display = "none";
     loadSpinner.style.display = "flex";
 
-    fetch("/posts")
+    fetch("/api/posts")
         .then(function (response) { return response.json() })
         .then(function (data) {
             posts = data;
@@ -136,7 +136,7 @@ function createOrUpdatePost() {
                 postData.creationDate = editPost.creationDate;
                 postData.author = editPost.author;
 
-                fetch("/posts/" + postData.id, {
+                fetch("/api/posts/" + postData.id, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -146,7 +146,7 @@ function createOrUpdatePost() {
                     .then(function (response) { return response.json() })
                     .then(function (data) {
                         if (isMainPost && currentMainPost?.id) {
-                            fetch("/posts/" + currentMainPost.id, {
+                            fetch("/api/posts/" + currentMainPost.id, {
                                 method: 'PATCH',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -177,7 +177,7 @@ function createOrUpdatePost() {
                 postData.author = personData.name;
 
                 // Cria novo post
-                fetch("/posts", {
+                fetch("/api/posts", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -187,7 +187,7 @@ function createOrUpdatePost() {
                     .then(function (response) { return response.json() })
                     .then(function (data) {
                         if (isMainPost && currentMainPost?.id) {
-                            fetch("/posts/" + currentMainPost.id, {
+                            fetch("/api/posts/" + currentMainPost.id, {
                                 method: 'PATCH',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -222,7 +222,7 @@ function deletePost() {
                 </div>
             `;
 
-        fetch("/posts/" + selectedPostID, { method: 'DELETE' })
+        fetch("/api/posts/" + selectedPostID, { method: 'DELETE' })
             .then(function (response) { return response.json() })
             .then(function (data) {
                 window.location.reload();
@@ -289,7 +289,7 @@ function renderPosts(postsToRender) {
     postsToRender.forEach(post => {
         postsList.innerHTML += `
             <div class="post">
-                <a href="/pages/post.html?id=${post.id}" style="background-image: url('${post.images[0]}');"> </a>
+                <a href="/post?id=${post.id}" style="background-image: url('${post.images[0]}');"> </a>
 
                 <div>
                     <h5>${post.type}</h5>

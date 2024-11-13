@@ -25,9 +25,9 @@ function loadUserInfo() {
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li> <a class="dropdown-item" href="/pages/products-managment.html">Produtos</a> </li>
-                        <li> <a class="dropdown-item" href="/pages/blog-managment.html">Blog</a></li>
-                        <li> <a class="dropdown-item" href="/pages/users-managment.html">Usuários</a> </li>
+                        <li> <a class="dropdown-item" href="/gerenciar-produtos">Produtos</a> </li>
+                        <li> <a class="dropdown-item" href="/gerenciar-blog">Blog</a></li>
+                        <li> <a class="dropdown-item" href="/gerenciar-usuarios">Usuários</a> </li>
                     </ul>
                 </div>
             `;
@@ -41,7 +41,7 @@ function loadUserInfo() {
             <div class="dropdown">
                 ${userPhoto}
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/pages/profile.html">Perfil</a></li>
+                    <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
                     <li style="cursor: pointer;" class="dropdown-item" onClick="logout()">Sair</li>
                 </ul>
             </div>
@@ -75,7 +75,7 @@ function signIn() {
                 </div>
             `;
 
-            fetch("/users")
+            fetch("/api/users")
                 .then(function (response) { return response.json() })
                 .then(function (data) {
                     let loggedUser = data.find(person => person.email === form[0].value && person.password === form[1].value);
@@ -150,7 +150,7 @@ function signUp() {
                 </div>
             `;;
 
-            fetch("/users?email=" + userData.email)
+            fetch("/api/users?email=" + userData.email)
                 .then(function (response) { return response.json() })
                 .then(function (data) {
                     if (data && data.length) {
@@ -178,7 +178,7 @@ function createUser(userData) {
     delete userData.repeatPassword;
 
     // Cria o novo usuário
-    fetch("/users", {
+    fetch("/api/users", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

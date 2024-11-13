@@ -69,7 +69,7 @@ function updateProfile() {
 
             if(userImageBase64) profileData.photo = userImageBase64;
 
-            fetch("/users/" + personData.id, {
+            fetch("/api/users/" + personData.id, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

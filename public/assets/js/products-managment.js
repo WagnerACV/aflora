@@ -31,7 +31,7 @@ function loadProducts() {
     productsContainer.style.display = "none";
     loadSpinner.style.display = "flex";
 
-    fetch("/products")
+    fetch("/api/products")
         .then(function (response) { return response.json() })
         .then(function (data) {
             products = data;
@@ -114,7 +114,7 @@ function createOrUpdateProduct() {
                 productData.id = editProduct.id;
                 productData.images = productImagesBase64?.length ? productImagesBase64 : editProduct.images;
 
-                fetch("/products/" + productData.id, {
+                fetch("/api/products/" + productData.id, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ function createOrUpdateProduct() {
                 productData.images = productImagesBase64;
 
                 // Cria novo produto
-                fetch("/products", {
+                fetch("/api/products", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -166,7 +166,7 @@ function deleteProduct() {
             </div>
         `;
 
-        fetch("/products/" + selectedProductID, { method: 'DELETE' })
+        fetch("/api/products/" + selectedProductID, { method: 'DELETE' })
             .then(function (response) { return response.json() })
             .then(function (data) {
                 window.location.reload();
@@ -230,7 +230,7 @@ function renderProducts(productsToRender) {
     productsToRender.forEach(product => {
         productsList.innerHTML += `
             <div class="product">
-                <a href="/pages/product.html?id=${product.id}" style="background-image: url('${product.images[0]}');"> </a>
+                <a href="/produto.html?id=${product.id}" style="background-image: url('${product.images[0]}');"> </a>
 
                 <div>
                     <h5>${product.name}</h5>

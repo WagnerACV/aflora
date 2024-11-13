@@ -9,7 +9,7 @@ loadSpinner.style.display = "flex";
 var searchInput = document.getElementById('searchInput');
 var deleteSeachButton = document.getElementById('deleteSeachButton');
 
-fetch("/products")
+fetch("/api/products")
     .then(function (response) { return response.json() })
     .then(function (data) {
         products = data;
@@ -57,7 +57,7 @@ function renderProducts(productsToRender) {
 
     productsToRender.forEach(product => {
         productsContent.innerHTML += `
-            <a href="/pages/product.html?id=${product.id}">
+            <a href="/produto?id=${product.id}">
                 <div class="product">
                     <div class="image-container" style="background-image: url('${product.images[0]}');"></div>
 
