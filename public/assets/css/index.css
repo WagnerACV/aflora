@@ -109,13 +109,26 @@ a {
         max-width: 700px;
         width: 80%;
     }
+
+    .contact-container {
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        flex-direction: column;
+        gap: 16px;
+        margin: 32px 0 0 0;
+    }
 }
 
-.contact-container {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.s4 {
+    button {
+        padding: 12px 24px;
+        background: #FDC47F;
+        color: black;
+        border: 1px solid black;
+        margin-right: 8px;
+    }
 }
 
 .s5 {
