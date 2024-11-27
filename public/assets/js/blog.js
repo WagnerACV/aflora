@@ -50,19 +50,19 @@ fetch("/api/posts")
     });
 
 function searchPosts() {
-    const searchText = searchInput.value;
+    const searchText = searchInput.value.toLowerCase();
 
     if (searchText?.length) {
         deleteSeachButton.style.display = "block";
 
         let filteredPosts = posts.filter(post => {
-            if (post.title.indexOf(searchText) !== -1) return true;
+            if (post.title.toLowerCase().indexOf(searchText) !== -1) return true;
 
-            if (post.type.indexOf(searchText) !== -1) return true;
+            if (post.type.toLowerCase().indexOf(searchText) !== -1) return true;
 
-            if (post.postText.indexOf(searchText) !== -1) return true;
+            if (post.postText.toLowerCase().indexOf(searchText) !== -1) return true;
 
-            if (post.creationDate.indexOf(searchText) !== -1) return true;
+            if (post.creationDate.toLowerCase().indexOf(searchText) !== -1) return true;
         });
 
         renderPosts(filteredPosts);

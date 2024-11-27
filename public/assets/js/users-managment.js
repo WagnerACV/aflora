@@ -36,7 +36,7 @@ function loadUsers() {
 }
 
 function searchUser() {
-    const searchText = searchInput.value;
+    const searchText = searchInput.value.toLowerCase();
 
     if(searchText?.length) {
         deleteSeachButton.style.display = "block";
@@ -44,13 +44,13 @@ function searchUser() {
         let filteredUsers = users.filter(user => {
             if(user.userType === "admin") return false;
 
-            if(user.name.indexOf(searchText) !== -1) return true;
+            if(user.name.toLowerCase().indexOf(searchText) !== -1) return true;
 
-            if(user.email.indexOf(searchText) !== -1) return true;
+            if(user.email.toLowerCase().indexOf(searchText) !== -1) return true;
 
-            if(user.phone.indexOf(searchText) !== -1) return true;
+            if(user.phone.toLowerCase().indexOf(searchText) !== -1) return true;
 
-            if(user.invitationCode.indexOf(searchText) !== -1) return true;
+            if(user.invitationCode.toLowerCase().indexOf(searchText) !== -1) return true;
         });
         
         renderUsers(filteredUsers);

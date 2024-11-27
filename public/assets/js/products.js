@@ -27,17 +27,17 @@ fetch("/api/products")
     });
 
 function searchProducts() {
-    const searchText = searchInput.value;
+    const searchText = searchInput.value.toLowerCase();
 
     if (searchText?.length) {
         deleteSeachButton.style.display = "block";
 
         let filteredProducts = products.filter(product => {
-            if (product.name.indexOf(searchText) !== -1) return true;
+            if (product.name.toLowerCase().indexOf(searchText) !== -1) return true;
 
-            if (product.price.indexOf(searchText) !== -1) return true;
+            if (product.price.toLowerCase().indexOf(searchText) !== -1) return true;
 
-            if (product.description.indexOf(searchText) !== -1) return true;
+            if (product.description.toLowerCase().indexOf(searchText) !== -1) return true;
         });
 
         renderProducts(filteredProducts);
