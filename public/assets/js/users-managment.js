@@ -49,6 +49,8 @@ function searchUser() {
             if(user.email.indexOf(searchText) !== -1) return true;
 
             if(user.phone.indexOf(searchText) !== -1) return true;
+
+            if(user.invitationCode.indexOf(searchText) !== -1) return true;
         });
         
         renderUsers(filteredUsers);

@@ -26,7 +26,7 @@ if (window?.location?.search?.includes("id=")) {
 
                 data.images.forEach((image, index) => {
                     carouselProductImages.innerHTML += `
-                    <div class="carousel-item ${index === 0 ? "active" : ""}">
+                    <div class="carousel-item ${index === 0 ? "active" : ""}" data-bs-interval="20000">
                         <img src="${image}" alt="${data.name}-${index}" onerror="this.onerror=null; this.src='../assets/images/product-1.png'">
                     </div>
                 `;

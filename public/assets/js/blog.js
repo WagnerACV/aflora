@@ -74,12 +74,10 @@ function searchPosts() {
 
 function renderPosts(postsToRender) {
     console.log(postsToRender)
-    if (!postsToRender?.length || posts.length === 1) {
+    if (!postsToRender?.length) {
         postsContent.innerHTML = '<h3 class="text-center">Nenhum post encontrado :(</h3>';
         return;
     }
-
-    postsToRender = postsToRender.filter(post => post.id !== mainPost.id);
 
     postsContent.innerHTML = null;
 
@@ -87,9 +85,9 @@ function renderPosts(postsToRender) {
         postsContent.innerHTML += `
                 <a href="/post?id=${post.id}">
                     <div class="post">
-                        <div class="image-container" style="background-image: url('${post.images[0]}');"></div>
+                        <div class="image-container" style="background-image: url('${post.images[0]}'); width: 100%;"></div>
 
-                        <div>
+                        <div class="p-2">
                             <h5>${post.type}</h5>
                             <h4>${post.title}</h4>
                             <h6>${post.author} - ${post.creationDate}</h6>

@@ -26,16 +26,16 @@ if (window?.location?.search?.includes("id=")) {
                 postContainer.style.display = "block";
                 loadSpinner.style.display = "none";
 
-                postType.innerHTML = data.title;
+                postType.innerHTML = data.type;
                 postTitle.innerHTML = data.title;
                 postDescription.innerHTML = data.creationDate;
 
                 data.images.forEach((image, index) => {
                     carouselPostImages.innerHTML += `
-                    <div class="carousel-item ${index === 0 ? "active" : ""}">
-                        <img src="${image}" alt="${data.name}-${index}" onerror="this.onerror=null; this.src='../assets/images/post-1.png'">
-                    </div>
-                `;
+                        <div class="carousel-item ${index === 0 ? "active" : ""}">
+                            <img src="${image}" alt="${data.name}-${index}" onerror="this.onerror=null; this.src='../assets/images/post-1.png'">
+                        </div>
+                    `;
                 });
 
                 postAuthor.innerHTML = data.author;

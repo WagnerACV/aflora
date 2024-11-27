@@ -230,7 +230,7 @@ function renderProducts(productsToRender) {
     productsToRender.forEach(product => {
         productsList.innerHTML += `
             <div class="product">
-                <a href="/produto.html?id=${product.id}" style="background-image: url('${product.images[0]}');"> </a>
+                <a href="/produto?id=${product.id}" style="background-image: url('${product.images[0]}');"> </a>
 
                 <div>
                     <h5>${product.name}</h5>

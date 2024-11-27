@@ -289,9 +289,9 @@ function renderPosts(postsToRender) {
     postsToRender.forEach(post => {
         postsList.innerHTML += `
             <div class="post">
-                <a href="/post?id=${post.id}" style="background-image: url('${post.images[0]}');"> </a>
+                <a href="/post?id=${post.id}" style="background-image: url('${post.images[0]}'); width: 100%;"> </a>
 
-                <div>
+                <div class="p-2">
                     <h5>${post.type}</h5>
                     <h4>${post.title}</h4>
                     <h6>${post.author} - ${post.creationDate}</h6>
