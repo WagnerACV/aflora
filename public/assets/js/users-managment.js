@@ -4,6 +4,7 @@ var users;
 var usersList = document.getElementById('users-list');
 var loadSpinner = document.getElementById('loadSpinner');
 var searchInput = document.getElementById('searchInput');
+var onlyNewsLettersButton = document.getElementById('onlyNewslettersButton');
 var deleteSeachButton = document.getElementById('deleteSeachButton');
 
 if (personData && JSON.parse(personData).userType === "admin") {
@@ -37,11 +38,12 @@ function loadUsers() {
 
 function searchUser() {
     const searchText = searchInput.value.toLowerCase();
+    let filteredUsers;
 
     if(searchText?.length) {
         deleteSeachButton.style.display = "block";
 
-        let filteredUsers = users.filter(user => {
+        filteredUsers = users.filter(user => {
             if(user.userType === "admin") return false;
 
             if(user.name.toLowerCase().indexOf(searchText) !== -1) return true;
@@ -52,12 +54,15 @@ function searchUser() {
 
             if(user.invitationCode.toLowerCase().indexOf(searchText) !== -1) return true;
         });
-        
-        renderUsers(filteredUsers);
     } else {
         deleteSeachButton.style.display = "none";
-        renderUsers(users);
+
+        filteredUsers = users;
     }
+
+    if(onlyNewsLettersButton.checked) filteredUsers = filteredUsers.filter(user => user.subscribedNewsletter);
+
+    renderUsers(filteredUsers);
 }
 
 function renderUsers(usersToRender) {
@@ -87,5 +92,8 @@ function deleteSearch() {
     deleteSeachButton.style.display = "none";
     searchInput.value = null;
 
-    renderUsers(users);
+    let filteredUsers = users;
+    if(onlyNewsLettersButton.checked) filteredUsers = filteredUsers.filter(user => user.subscribedNewsletter);
+
+    renderUsers(filteredUsers);
 }
