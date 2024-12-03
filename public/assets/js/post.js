@@ -53,8 +53,8 @@ if (window?.location?.search?.includes("id=")) {
 
                 postShare.innerHTML = `
                 <a href="https://www.facebook.com/sharer/sharer.php?u=${window.location.href}"><img src="../assets/images/facebook-icon.svg" alt="Facebook"></a>
-                <a href="https://twitter.com/intent/tweet?text=Confira%20este%20produto%20incr%C3%ADvel!%20${window.location.href}"><img src="../assets/images/x-icon.svg" alt="X"></a>
-                <a href="https://wa.me/?text=Confira%20este%20produto%20incr%C3%ADvel!%20${window.location.href}""><img src="../assets/images/whatsapp-icon.png" alt="X"></a>
+                <a href="https://twitter.com/intent/tweet?text=Confira%20este%20post%20incr%C3%ADvel!%20${window.location.href}"><img src="../assets/images/x-icon.svg" alt="X"></a>
+                <a href="https://wa.me/?text=Confira%20este%20post%20incr%C3%ADvel!%20${window.location.href}""><img src="../assets/images/whatsapp-icon.png" alt="X"></a>
             `;
 
                 postContent.innerHTML = data.postText;
